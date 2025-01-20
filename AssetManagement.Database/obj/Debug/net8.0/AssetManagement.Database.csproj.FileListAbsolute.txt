@@ -1,0 +1,17 @@
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/bin/Debug/net8.0/AssetManagement.Database.deps.json
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/bin/Debug/net8.0/AssetManagement.Database.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/bin/Debug/net8.0/AssetManagement.Database.pdb
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/bin/Debug/net8.0/AssetManagement.Models.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/bin/Debug/net8.0/AssetManagement.Models.pdb
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.csproj.AssemblyReference.cache
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.GeneratedMSBuildEditorConfig.editorconfig
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.AssemblyInfoInputs.cache
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.AssemblyInfo.cs
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.csproj.CoreCompileInputs.cache
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetMan.BDEE2D6D.Up2Date
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/refint/AssetManagement.Database.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.pdb
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/ref/AssetManagement.Database.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/bin/Debug/net8.0/AssetManagement.Database.runtimeconfig.json
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.genruntimeconfig.cache

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "uc5A5hz3rKKRVD056su2gSey5kmyN6ZBJY60bfE41wQ=",
+  "Source": "AssetManagement.WebApi",
+  "BasePath": "_content/AssetManagement.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

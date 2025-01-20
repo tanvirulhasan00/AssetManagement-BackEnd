@@ -1,0 +1,12 @@
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/bin/Debug/net8.0/AssetManagement.Models.deps.json
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/bin/Debug/net8.0/AssetManagement.Models.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/bin/Debug/net8.0/AssetManagement.Models.pdb
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.csproj.AssemblyReference.cache
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.AssemblyInfoInputs.cache
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.AssemblyInfo.cs
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.csproj.CoreCompileInputs.cache
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/refint/AssetManagement.Models.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.pdb
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/ref/AssetManagement.Models.dll
