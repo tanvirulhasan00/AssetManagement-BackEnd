@@ -15,3 +15,4 @@
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/ref/AssetManagement.Database.dll
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/bin/Debug/net8.0/AssetManagement.Database.runtimeconfig.json
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.genruntimeconfig.cache
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Database/obj/Debug/net8.0/AssetManagement.Database.sourcelink.json

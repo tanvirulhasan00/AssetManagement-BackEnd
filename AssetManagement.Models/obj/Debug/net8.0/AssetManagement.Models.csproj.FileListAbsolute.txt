@@ -10,3 +10,4 @@
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/refint/AssetManagement.Models.dll
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.pdb
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/ref/AssetManagement.Models.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Models/obj/Debug/net8.0/AssetManagement.Models.sourcelink.json

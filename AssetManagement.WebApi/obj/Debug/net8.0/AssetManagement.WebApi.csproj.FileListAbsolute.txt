@@ -171,3 +171,4 @@
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/bin/Debug/net8.0/AssetManagement.Database.pdb
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/bin/Debug/net8.0/AssetManagement.Models.pdb
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/bin/Debug/net8.0/AssetManagement.Repositories.pdb
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/obj/Debug/net8.0/AssetManagement.WebApi.sourcelink.json
