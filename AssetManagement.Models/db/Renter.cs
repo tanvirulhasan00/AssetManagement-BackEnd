@@ -38,5 +38,8 @@ namespace AssetManagement.Models.db
         [Required]
         public int Active { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
+
     }
 }

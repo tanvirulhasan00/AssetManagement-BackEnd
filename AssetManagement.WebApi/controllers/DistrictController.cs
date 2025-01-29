@@ -25,7 +25,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllDistrict(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -72,7 +72,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetDistrict(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -119,7 +119,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateDistrict([FromBody] DiviNDisCreateReqDto districtDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -189,7 +189,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> UpdateDistrict([FromBody] DiviNDisReqDto districtDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -255,7 +255,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> DeleteDistrict(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

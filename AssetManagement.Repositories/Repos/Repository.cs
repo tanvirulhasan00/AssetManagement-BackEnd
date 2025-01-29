@@ -7,6 +7,8 @@ using AssetManagement.Database.data;
 using AssetManagement.Models.Request.Generic;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Repositories.IRepos;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssetManagement.Repositories.Repos
@@ -16,10 +18,12 @@ namespace AssetManagement.Repositories.Repos
         private readonly AssetManagementDbContext _context;
         private readonly DbSet<T> _dbSet;
 
+
         public Repository(AssetManagementDbContext context)
         {
             _context = context;
             this._dbSet = _context.Set<T>();
+
         }
         public async Task<List<T>> GetAllAsync(GenericRequest<T> request)
         {

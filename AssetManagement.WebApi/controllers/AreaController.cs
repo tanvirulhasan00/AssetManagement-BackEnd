@@ -21,7 +21,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllArea(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -68,7 +68,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetArea(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -115,7 +115,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateArea([FromBody] AreaCreateReqDto areaDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -190,7 +190,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> UpdateArea([FromBody] AreaUpdateReqDto areaDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -262,7 +262,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> DeleteArea(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

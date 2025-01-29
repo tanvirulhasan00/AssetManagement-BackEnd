@@ -17,5 +17,6 @@ namespace AssetManagement.Models.Request.Dto
         public int Active { get; set; }
         public int CategoryId { get; set; }
         public int HouseId { get; set; }
+
     }
 }

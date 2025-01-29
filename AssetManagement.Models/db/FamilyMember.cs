@@ -26,5 +26,8 @@ namespace AssetManagement.Models.db
         public long RenterId { get; set; }
         [ForeignKey("RenterId")]
         public Renter? RenterDetails { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }

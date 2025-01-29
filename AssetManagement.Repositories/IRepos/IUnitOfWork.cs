@@ -11,6 +11,9 @@ using AssetManagement.Repositories.IRepos.IHouseRepo;
 using AssetManagement.Repositories.IRepos.IFlatRepo;
 using AssetManagement.Repositories.IRepos.IRenterRepo;
 using AssetManagement.Repositories.IRepos.IFamilyMemberRepo;
+using AssetManagement.Repositories.IRepos.IUserRepo;
+using AssetManagement.Repositories.IRepos.IImageUpload;
+using AssetManagement.Repositories.IRepos.IHistoryRepo;
 
 namespace AssetManagement.Repositories.IRepos
 {
@@ -25,6 +28,9 @@ namespace AssetManagement.Repositories.IRepos
         public IFlatRepository Flats { get; }
         public IRenterRepository Renters { get; }
         public IFamilyMemberRepository FamilyMembers { get; }
+        public IUserRepository Users { get; }
+        public IImageUploadRepository Image { get; }
+        public IHistoryRepositoy Histories { get; }
         Task<int> Save();
     }
 }

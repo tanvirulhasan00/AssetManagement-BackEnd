@@ -17,5 +17,7 @@ namespace AssetManagement.Models.Request.Dto
         public long PostCode { get; set; }
         [Required]
         public int Active { get; set; }
+
+        public DateTime UpdatedDate { get; set; }
     }
 }

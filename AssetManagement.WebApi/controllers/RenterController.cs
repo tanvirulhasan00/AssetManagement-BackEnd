@@ -22,6 +22,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetAllRenter(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -39,7 +40,7 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = "Unsuccessful";
+                    response.Message = "Unsuccessful - data not found";
                     return response;
                 }
                 response.Success = true;
@@ -69,6 +70,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetRenter(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -86,7 +88,7 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = "Unsuccessful";
+                    response.Message = "Unsuccessful - data not found";
                     return response;
                 }
                 response.Success = true;
@@ -116,11 +118,26 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<ApiResponse> CreateRenter([FromBody] RenterCreateReqDto request, CancellationToken cancellationToken)
+        // [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> CreateRenter(RenterCreateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             try
             {
+                var profilePicUrl = "";
+                var nidPicUrl = "";
+
+                if (request.ImageUrl != null)
+                {
+
+                    profilePicUrl = await _unitOfWork.Image.ImageUpload(request.ImageUrl);
+                }
+                if (request.NidImageUrl != null)
+                {
+
+                    nidPicUrl = await _unitOfWork.Image.ImageUpload(request.NidImageUrl);
+                }
+
                 Renter renterToCreate = new()
                 {
                     Name = request.Name,
@@ -140,9 +157,11 @@ namespace AssetManagement.WebApi.controllers
                     PrevRoomOwnerNumber = request.PrevRoomOwnerNumber,
                     PrevRoomOwnerAddress = request.PrevRoomOwnerAddress,
                     ReasonToLeavePrevHome = request.ReasonToLeavePrevHome,
-                    ImageUrl = request.ImageUrl,
-                    NidImageUrl = request.NidImageUrl,
+                    ImageUrl = profilePicUrl,
+                    NidImageUrl = nidPicUrl,
                     Active = request.Active,
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow,
                 };
                 _unitOfWork.Renters?.AddAsync(renterToCreate);
                 var result = await _unitOfWork.Save();
@@ -150,12 +169,12 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Unsuccessful - Something wrong while creating renter";
+                    response.Message = "Unsuccessful - Something went wrong while creating renter";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Created Successfully";
                 return response;
 
             }
@@ -179,7 +198,8 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        public async Task<ApiResponse> UpdateRenter([FromBody] RenterUpdateReqDto request, CancellationToken cancellationToken)
+        // [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> UpdateRenter(RenterUpdateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             try
@@ -196,9 +216,35 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = "Unsuccessful";
+                    response.Message = "Unsuccessful - data not found";
                     return response;
                 }
+
+                if (!string.IsNullOrEmpty(renterData.ImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(renterData.ImageUrl);
+                }
+                if (!string.IsNullOrEmpty(renterData.NidImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(renterData.NidImageUrl);
+                }
+
+                var profilePicUrl = "";
+                var nidPicUrl = "";
+
+                if (request.ImageUrl != null)
+                {
+
+                    profilePicUrl = await _unitOfWork.Image.ImageUpload(request.ImageUrl);
+                }
+                if (request.NidImageUrl != null)
+                {
+
+                    nidPicUrl = await _unitOfWork.Image.ImageUpload(request.NidImageUrl);
+                }
+
+
+
                 renterData.Name = (request.Name == null || request.Name == "") ? renterData.Name : request.Name;
                 renterData.FatherName = (request.FatherName == null || request.FatherName == "") ? renterData.FatherName : request.FatherName;
                 renterData.MotherName = (request.MotherName == null || request.MotherName == "") ? renterData.MotherName : request.MotherName;
@@ -216,9 +262,10 @@ namespace AssetManagement.WebApi.controllers
                 renterData.PrevRoomOwnerNumber = (request.PrevRoomOwnerNumber == null || request.PrevRoomOwnerNumber == "") ? renterData.PrevRoomOwnerNumber : request.PrevRoomOwnerNumber;
                 renterData.PrevRoomOwnerAddress = (request.PrevRoomOwnerAddress == null || request.PrevRoomOwnerAddress == "") ? renterData.PrevRoomOwnerAddress : request.PrevRoomOwnerAddress;
                 renterData.ReasonToLeavePrevHome = (request.ReasonToLeavePrevHome == null || request.ReasonToLeavePrevHome == "") ? renterData.ReasonToLeavePrevHome : request.ReasonToLeavePrevHome;
-                renterData.ImageUrl = (request.ImageUrl == null || request.ImageUrl == "") ? renterData.ImageUrl : request.ImageUrl;
-                renterData.NidImageUrl = (request.NidImageUrl == null || request.NidImageUrl == "") ? renterData.NidImageUrl : request.NidImageUrl;
+                renterData.ImageUrl = (profilePicUrl == null || profilePicUrl == "") ? renterData.ImageUrl : profilePicUrl;
+                renterData.NidImageUrl = (nidPicUrl == null || nidPicUrl == "") ? renterData.NidImageUrl : nidPicUrl;
                 renterData.Active = request.Active;
+                renterData.UpdatedDate = DateTime.UtcNow;
 
                 _unitOfWork.Renters?.Update(renterData);
                 var result = await _unitOfWork.Save();
@@ -226,12 +273,12 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Unsuccessful - Something wrong while updating renter";
+                    response.Message = "Unsuccessful - Something went wrong while updating renter";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Updated Successfully";
                 return response;
 
             }
@@ -255,7 +302,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> DeleteRenter(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -263,7 +310,7 @@ namespace AssetManagement.WebApi.controllers
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - valid id needed.";
                 return response;
             }
             try
@@ -280,8 +327,17 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - renter data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - renter not found with the id {Id}";
                     return response;
+                }
+
+                if (!string.IsNullOrEmpty(renterData.ImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(renterData.ImageUrl);
+                }
+                if (!string.IsNullOrEmpty(renterData.NidImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(renterData.NidImageUrl);
                 }
 
                 _unitOfWork.Renters.Remove(renterData);
@@ -290,12 +346,12 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting renter";
+                    response.Message = "Something went wrong while deleting renter";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)

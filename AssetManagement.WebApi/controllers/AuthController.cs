@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Response.Api;
@@ -33,16 +34,17 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("registration")]
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> Registration(RegistrationReqDto request)
         {
             var response = new ApiResponse();
-            var isUniqueUser = _unitOfWork.Auth.IsUniqueUser(request.PhoneNumber);
+
+            var isUniqueUser = _unitOfWork.Auth.IsUniqueUser(request.NidNumber);
             if (isUniqueUser == false)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.Conflict;
-                response.Message = "User already exists with this phone number";
+                response.Message = "User already exists with this Nid number";
                 return response;
             }
             if (request.UserName == null || request.UserName == "" || request.Password == null || request.Password == "")
@@ -50,6 +52,16 @@ namespace AssetManagement.WebApi.controllers
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Message = "User name and password can not be empty or null.";
+                return response;
+            }
+            var PasswordRegex = @"^(?=(.*[A-Z]))(?=(.*\d))(?=(.*\W))(?=.{6,})[A-Za-z\d\W]*$";
+            var regex = new Regex(PasswordRegex);
+            var validPassword = regex.IsMatch(request.Password);
+            if (!validPassword)
+            {
+                response.Success = false;
+                response.StatusCode = HttpStatusCode.BadRequest;
+                response.Message = "Password must be at least 6 characters long, include at least one uppercase letter, one digit, and one non-alphanumeric character.";
                 return response;
             }
             response = await _unitOfWork.Auth.Registration(request);
@@ -86,13 +98,13 @@ namespace AssetManagement.WebApi.controllers
             return response;
         }
 
-        [HttpPost]
-        [Route("update-user")]
-        //[Authorize(Roles = "admin")]
-        public async Task<ApiResponse> UpdateUserInfo([FromBody] UserInfoUpdateReqDto request)
-        {
-            var response = await _unitOfWork.Auth.UpdateUserInfo(request);
-            return response;
-        }
+        // [HttpPost]
+        // [Route("update-user")]
+        // //[Authorize(Roles = "admin")]
+        // public async Task<ApiResponse> UpdateUserInfo([FromBody] UserInfoUpdateReqDto request)
+        // {
+        //     var response = await _unitOfWork.Auth.UpdateUserInfo(request);
+        //     return response;
+        // }
     }
 }

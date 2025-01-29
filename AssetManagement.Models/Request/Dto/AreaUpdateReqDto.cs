@@ -19,5 +19,6 @@ namespace AssetManagement.Models.Request.Dto
         public string? Mouza { get; set; }
         [Required]
         public int Active { get; set; }
+
     }
 }

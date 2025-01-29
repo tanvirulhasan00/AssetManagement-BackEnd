@@ -10,6 +10,6 @@ namespace AssetManagement.Models.Response.Dto
         public string Id { get; set; }
         public string? UserName { get; set; }
         public string? Name { get; set; }
-        public string? ProfilePicUrl { get; set; }
+        public int Active { get; set; }
     }
 }

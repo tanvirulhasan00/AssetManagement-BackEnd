@@ -25,7 +25,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllDivision(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -72,7 +72,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetDivision(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -119,7 +119,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateDivision([FromBody] DiviNDisCreateReqDto divisionDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -189,7 +189,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> UpdateDivision([FromBody] DiviNDisReqDto divisionDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -256,7 +256,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin,manager")]
+        // [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> DeleteDivision(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

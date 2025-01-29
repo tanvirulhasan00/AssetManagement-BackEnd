@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AssetManagement.Models.Request.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace AssetManagement.Repositories.IRepos
 {
@@ -12,6 +13,5 @@ namespace AssetManagement.Repositories.IRepos
         Task<T> GetAsync(GenericRequest<T> request);
         Task AddAsync(T entity);
         void Remove(T entity);
-
     }
 }

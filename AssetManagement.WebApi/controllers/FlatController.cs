@@ -22,6 +22,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetAllFlat(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -69,6 +70,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetFlat(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -116,6 +118,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> CreateFlat([FromBody] FlatCreateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -166,6 +169,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> UpdateFlat([FromBody] FlatUpdateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -229,7 +233,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> DeleteFLat(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

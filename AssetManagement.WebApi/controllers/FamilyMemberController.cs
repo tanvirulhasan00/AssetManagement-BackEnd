@@ -116,11 +116,32 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<ApiResponse> CreateFamilyMember([FromBody] FamilyMemberCreateDto request, CancellationToken cancellationToken)
+        public async Task<ApiResponse> CreateFamilyMember(FamilyMemberCreateDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
+            var imageUrl = "";
+            var nidImageUrl = "";
+
+            var isUniqueUser = _unitOfWork.FamilyMembers.IsUniqueMember(request.NidNumber);
+            if (isUniqueUser == false)
+            {
+                response.Success = false;
+                response.StatusCode = HttpStatusCode.Conflict;
+                response.Message = "Person already exists with this Nid number";
+                return response;
+            }
             try
             {
+                if (request.ImageUrl != null)
+                {
+
+                    imageUrl = await _unitOfWork.Image.ImageUpload(request.ImageUrl);
+                }
+                if (request.NidImageUrl != null)
+                {
+
+                    nidImageUrl = await _unitOfWork.Image.ImageUpload(request.NidImageUrl);
+                }
                 FamilyMember familyMemberToCreate = new()
                 {
                     Name = request.Name,
@@ -129,11 +150,13 @@ namespace AssetManagement.WebApi.controllers
                     Relation = request.Relation,
                     PhoneNumber = request.PhoneNumber,
                     Address = request.Address,
-                    ImageUrl = request.ImageUrl,
-                    NidImageUrl = request.NidImageUrl,
+                    ImageUrl = imageUrl,
+                    NidImageUrl = nidImageUrl,
                     IsEmergencyContact = request.IsEmergencyContact,
                     RenterId = request.RenterId,
                     Active = request.Active,
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow,
                 };
                 _unitOfWork.FamilyMembers?.AddAsync(familyMemberToCreate);
                 var result = await _unitOfWork.Save();
@@ -170,9 +193,11 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        public async Task<ApiResponse> UpdateFamilyMember([FromBody] FamilyMemberUpdateDto request, CancellationToken cancellationToken)
+        public async Task<ApiResponse> UpdateFamilyMember(FamilyMemberUpdateDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
+            var imageUrl = "";
+            var nidImageUrl = "";
             try
             {
                 var genericReq = new GenericRequest<FamilyMember>()
@@ -190,17 +215,40 @@ namespace AssetManagement.WebApi.controllers
                     response.Message = "Unsuccessful";
                     return response;
                 }
+
+                if (!string.IsNullOrEmpty(familyMemberData.ImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(familyMemberData.ImageUrl);
+                }
+                if (!string.IsNullOrEmpty(familyMemberData.NidImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(familyMemberData.NidImageUrl);
+                }
+
+                if (request.ImageUrl != null)
+                {
+
+                    imageUrl = await _unitOfWork.Image.ImageUpload(request.ImageUrl);
+                }
+                if (request.NidImageUrl != null)
+                {
+
+                    nidImageUrl = await _unitOfWork.Image.ImageUpload(request.NidImageUrl);
+                }
+
+
                 familyMemberData.Name = (request.Name == null || request.Name == "") ? familyMemberData.Name : request.Name;
                 familyMemberData.NidNumber = (request.NidNumber == null || request.NidNumber == "") ? familyMemberData.NidNumber : request.NidNumber;
                 familyMemberData.Occupation = (request.Occupation == null || request.Occupation == "") ? familyMemberData.Occupation : request.Occupation;
                 familyMemberData.Relation = (request.Relation == null || request.Relation == "") ? familyMemberData.Relation : request.Relation;
                 familyMemberData.PhoneNumber = (request.PhoneNumber == null || request.PhoneNumber == "") ? familyMemberData.PhoneNumber : request.PhoneNumber;
                 familyMemberData.Address = (request.Address == null || request.Address == "") ? familyMemberData.Address : request.Address;
-                familyMemberData.ImageUrl = (request.ImageUrl == null || request.ImageUrl == "") ? familyMemberData.ImageUrl : request.ImageUrl;
-                familyMemberData.NidImageUrl = (request.NidImageUrl == null || request.NidImageUrl == "") ? familyMemberData.NidImageUrl : request.NidImageUrl;
+                familyMemberData.ImageUrl = (imageUrl == null || imageUrl == "") ? familyMemberData.ImageUrl : imageUrl;
+                familyMemberData.NidImageUrl = (nidImageUrl == null || nidImageUrl == "") ? familyMemberData.NidImageUrl : nidImageUrl;
                 familyMemberData.IsEmergencyContact = request.IsEmergencyContact == 0 ? familyMemberData.IsEmergencyContact : request.IsEmergencyContact;
                 familyMemberData.RenterId = request.RenterId == 0 ? familyMemberData.RenterId : request.RenterId;
                 familyMemberData.Active = request.Active;
+                familyMemberData.UpdatedDate = DateTime.UtcNow;
 
                 _unitOfWork.FamilyMembers?.Update(familyMemberData);
                 var result = await _unitOfWork.Save();
@@ -237,7 +285,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> DeleteFamilyMember(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -265,6 +313,16 @@ namespace AssetManagement.WebApi.controllers
                     response.Message = $"Unsuccessful - family member data not found with the id {Id}";
                     return response;
                 }
+
+                if (!string.IsNullOrEmpty(familyMemberData.ImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(familyMemberData.ImageUrl);
+                }
+                if (!string.IsNullOrEmpty(familyMemberData.NidImageUrl))
+                {
+                    _unitOfWork.Image.ImageDelete(familyMemberData.NidImageUrl);
+                }
+
 
                 _unitOfWork.FamilyMembers.Remove(familyMemberData);
                 int res = await _unitOfWork.Save();

@@ -20,5 +20,14 @@ namespace AssetManagement.Repositories.Repos.FamilyMemberRepo
         {
             _context.Update(familyMember);
         }
+        public bool IsUniqueMember(string nidNumber)
+        {
+            var user = _context.FamilyMembers?.FirstOrDefault(u => u.NidNumber == nidNumber);
+            if (user == null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

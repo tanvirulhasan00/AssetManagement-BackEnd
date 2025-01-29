@@ -7,8 +7,12 @@ using AssetManagement.Models.db;
 using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Models.Response.Dto;
+using AssetManagement.Repositories.IRepos;
 using AssetManagement.Repositories.IRepos.IAuth;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -20,16 +24,20 @@ namespace AssetManagement.Repositories.Repos.Auth
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly string _secretKey;
-        public AuthRepository(AssetManagementDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, string secretKey)
+        private readonly IWebHostEnvironment _env;
+
+        public AuthRepository(AssetManagementDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, string secretKey, IWebHostEnvironment env)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _secretKey = secretKey;
+            _env = env;
+
         }
-        public bool IsUniqueUser(string phoneNumber)
+        public bool IsUniqueUser(string nidNumber)
         {
-            var user = _context.ApplicationUsers?.FirstOrDefault(u => u.PhoneNumber == phoneNumber);
+            var user = _context.ApplicationUsers?.FirstOrDefault(u => u.NidNumber == nidNumber);
             if (user == null)
             {
                 return true;
@@ -77,11 +85,11 @@ namespace AssetManagement.Repositories.Repos.Auth
                     Id = user.Id,
                     UserName = user.UserName,
                     Name = user.Name,
-                    ProfilePicUrl = user.ProfilePicUrl,
+                    Active = user.Active,
                 };
                 loginRes.User = userRes;
-                var jwt = tokenHandler.ReadJwtToken(loginRes.Token);
-                loginRes.Role = jwt.Claims.FirstOrDefault(x => x.Type == "role")?.Value;
+                // var jwt = tokenHandler.ReadJwtToken(loginRes.Token);
+                // loginRes.Role = jwt.Claims.FirstOrDefault(x => x.Type == "role")?.Value;
 
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
@@ -102,6 +110,54 @@ namespace AssetManagement.Repositories.Repos.Auth
         public async Task<ApiResponse> Registration(RegistrationReqDto request)
         {
             var response = new ApiResponse();
+
+            // // Get the root path of wwwroot
+            var rootPath = _env.WebRootPath;
+
+            // // Generate unique names for the files
+            var profilePicName = Guid.NewGuid().ToString() + Path.GetExtension(request.ProfilePicUrl?.FileName);
+            var nidPicName = Guid.NewGuid().ToString() + Path.GetExtension(request.NidPicUrl?.FileName);
+
+            // // Combine root path with file names to create file paths
+            var profilePicPath = Path.Combine(rootPath, "images", profilePicName);
+            var nidPicPath = Path.Combine(rootPath, "images", nidPicName);
+
+            // // Ensure the "images" folder exists in wwwroot
+            var imagesFolder = Path.Combine(rootPath, "images");
+            if (!Directory.Exists(imagesFolder))
+                Directory.CreateDirectory(imagesFolder);
+
+            // // Save the profile picture
+            using (var stream = new FileStream(profilePicPath, FileMode.Create))
+            {
+                await request.ProfilePicUrl.CopyToAsync(stream);
+            }
+
+            // // Save the NID picture
+            using (var stream = new FileStream(nidPicPath, FileMode.Create))
+            {
+                await request.NidPicUrl.CopyToAsync(stream);
+            }
+
+            // // Create URLs for the saved files
+            var profilePicUrl = $"/images/{profilePicName}";
+            var nidPicUrl = $"/images/{nidPicName}";
+
+
+            // var profilePicUrl = "";
+            // var nidPicUrl = "";
+
+            // if (request.ProfilePicUrl != null)
+            // {
+
+            //     profilePicUrl = await _unitOfWork.Image.ImageUpload(request.ProfilePicUrl);
+            // }
+            // if (request.NidPicUrl != null)
+            // {
+
+            //     nidPicUrl = await _unitOfWork.Image.ImageUpload(request.NidPicUrl);
+            // }
+
             ApplicationUser user = new()
             {
                 Name = request.Name,
@@ -109,8 +165,13 @@ namespace AssetManagement.Repositories.Repos.Auth
                 PhoneNumber = request.PhoneNumber,
                 Email = request.Email,
                 Address = request.Address,
-                ProfilePicUrl = request.ProfilePicUrl,
-                NidPicUrl = request.NidPicUrl,
+                NidNumber = request.NidNumber,
+                ProfilePicUrl = profilePicUrl,
+                NidPicUrl = nidPicUrl,
+                Active = int.Parse(request.Active),
+                CreatedDate = DateTime.UtcNow,
+                UpdatedDate = DateTime.UtcNow,
+
             };
             try
             {
@@ -127,14 +188,15 @@ namespace AssetManagement.Repositories.Repos.Auth
 
                     response.Success = true;
                     response.StatusCode = HttpStatusCode.Created;
-                    response.Message = "Successful";
+                    response.Message = "User created.";
                     //return response;
                 }
                 else
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something went wrong while creating user.";
+                    // response.Message = "Something went wrong while creating user.";
+                    response.Message = $"{string.Join("\n", result.Errors.Select(s => s.Code))}\n{string.Join("\n", result.Errors.Select(s => s.Description))}";
                     response.Error = result.Errors;
                 }
                 return response;
@@ -183,42 +245,42 @@ namespace AssetManagement.Repositories.Repos.Auth
 
         }
 
-        public async Task<ApiResponse> UpdateUserInfo(UserInfoUpdateReqDto request)
-        {
-            var response = new ApiResponse();
-            try
-            {
-                var user = _context.ApplicationUsers?.FirstOrDefaultAsync(x => x.Id == request.Id);
-                if (user?.Result == null)
-                {
-                    response.Success = false;
-                    response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = "Something went wrong while updating user info";
-                    return response;
-                }
-                user.Result.Name = (request.Name == null || request.Name == "") ? user.Result.Name : request.Name;
-                user.Result.UserName = (request.UserName == null || request.UserName == "") ? user.Result.UserName : request.UserName;
-                user.Result.Email = (request.Email == null || request.Email == "") ? user.Result.Email : request.Email;
-                user.Result.PhoneNumber = (request.PhoneNumber == null || request.PhoneNumber == "") ? user.Result.PhoneNumber : request.PhoneNumber;
-                user.Result.Address = (request.Address == null || request.Address == "") ? user.Result.Address : request.Address;
-                user.Result.ProfilePicUrl = (request.ProfilePicUrl == null || request.ProfilePicUrl == "") ? user.Result.ProfilePicUrl : request.ProfilePicUrl;
-                user.Result.NidPicUrl = (request.NidPicUrl == null || request.NidPicUrl == "") ? user.Result.NidPicUrl : request.NidPicUrl;
+        // public async Task<ApiResponse> UpdateUserInfo(UserInfoUpdateReqDto request)
+        // {
+        //     var response = new ApiResponse();
+        //     try
+        //     {
+        //         var user = _context.ApplicationUsers?.FirstOrDefaultAsync(x => x.Id == request.Id);
+        //         if (user?.Result == null)
+        //         {
+        //             response.Success = false;
+        //             response.StatusCode = HttpStatusCode.NotFound;
+        //             response.Message = "Something went wrong while updating user info";
+        //             return response;
+        //         }
+        //         user.Result.Name = (request.Name == null || request.Name == "") ? user.Result.Name : request.Name;
+        //         user.Result.UserName = (request.UserName == null || request.UserName == "") ? user.Result.UserName : request.UserName;
+        //         user.Result.Email = (request.Email == null || request.Email == "") ? user.Result.Email : request.Email;
+        //         user.Result.PhoneNumber = (request.PhoneNumber == null || request.PhoneNumber == "") ? user.Result.PhoneNumber : request.PhoneNumber;
+        //         user.Result.Address = (request.Address == null || request.Address == "") ? user.Result.Address : request.Address;
+        //         user.Result.ProfilePicUrl = (request.ProfilePicUrl == null || request.ProfilePicUrl == "") ? user.Result.ProfilePicUrl : request.ProfilePicUrl;
+        //         user.Result.NidPicUrl = (request.NidPicUrl == null || request.NidPicUrl == "") ? user.Result.NidPicUrl : request.NidPicUrl;
 
-                await _userManager.UpdateAsync(user.Result);
+        //         await _userManager.UpdateAsync(user.Result);
 
-                response.Success = true;
-                response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Update Successful";
-                return response;
-            }
-            catch (Exception ex)
-            {
-                response.Success = false;
-                response.StatusCode = HttpStatusCode.InternalServerError;
-                response.Message = ex.Message;
-                response.Error = ex;
-                return response;
-            }
-        }
+        //         response.Success = true;
+        //         response.StatusCode = HttpStatusCode.OK;
+        //         response.Message = "Update Successful";
+        //         return response;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         response.Success = false;
+        //         response.StatusCode = HttpStatusCode.InternalServerError;
+        //         response.Message = ex.Message;
+        //         response.Error = ex;
+        //         return response;
+        //     }
+        // }
     }
 }

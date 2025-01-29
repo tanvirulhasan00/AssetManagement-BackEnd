@@ -22,6 +22,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetAllHouse(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -69,6 +70,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetHouse(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -116,6 +118,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> CreateHouse([FromBody] HouseCreateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -130,6 +133,8 @@ namespace AssetManagement.WebApi.controllers
                     Road = request.Road,
                     PostCode = request.PostCode,
                     Active = request.Active,
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow,
                 };
                 _unitOfWork.Houses?.AddAsync(houseToCreate);
                 var result = await _unitOfWork.Save();
@@ -166,6 +171,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> UpdateHouse([FromBody] HouseUpdateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -193,6 +199,7 @@ namespace AssetManagement.WebApi.controllers
                 houseData.Road = (request.Road == null || request.Road == "") ? houseData.Road : request.Road;
                 houseData.PostCode = request.PostCode == 0 ? houseData.PostCode : request.PostCode;
                 houseData.Active = request.Active;
+                houseData.UpdatedDate = DateTime.UtcNow;
 
                 _unitOfWork.Houses?.Update(houseData);
                 var result = await _unitOfWork.Save();
@@ -229,7 +236,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        // [Authorize(Roles = "admin")]
         public async Task<ApiResponse> DeleteHouse(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

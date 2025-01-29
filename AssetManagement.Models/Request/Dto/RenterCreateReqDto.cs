@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace AssetManagement.Models.Request.Dto
 {
@@ -28,12 +29,15 @@ namespace AssetManagement.Models.Request.Dto
         public string? PrevRoomOwnerAddress { get; set; }
         public string? ReasonToLeavePrevHome { get; set; }
 
-        public string? ImageUrl { get; set; }
-        public string? NidImageUrl { get; set; }
+        public IFormFile? ImageUrl { get; set; }
+        public IFormFile? NidImageUrl { get; set; }
 
         public DateTime StartDate { get; set; }
 
         [Required]
         public int Active { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }
