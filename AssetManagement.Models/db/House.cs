@@ -14,12 +14,11 @@ namespace AssetManagement.Models.db
         public string? Name { get; set; }
         public int AreaId { get; set; }
         [ForeignKey("AreaId")]
-        public Area? AreaDetails { get; set; }
+        public Area? Area { get; set; }
         public int TotalFloor { get; set; }
         public int TotalFlat { get; set; }
         public string? Road { get; set; }
         public long PostCode { get; set; }
-        [Required]
         public int Active { get; set; }
 
         public DateTime CreatedDate { get; set; }

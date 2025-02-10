@@ -10,13 +10,12 @@ namespace AssetManagement.Models.Request.Dto
     {
         public long Id { get; set; }
         public string? Name { get; set; }
-        public int FloorNo { get; set; }
-        public int TotalRoom { get; set; }
-        public long Price { get; set; }
-        [Required]
-        public int Active { get; set; }
-        public int CategoryId { get; set; }
-        public int HouseId { get; set; }
+        public string? FloorNo { get; set; }
+        public string? TotalRoom { get; set; }
+        public string Active { get; set; }
+        public string CategoryId { get; set; }
+        public string HouseId { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
     }
 }

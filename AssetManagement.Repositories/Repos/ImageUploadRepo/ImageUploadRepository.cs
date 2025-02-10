@@ -11,9 +11,11 @@ namespace AssetManagement.Repositories.Repos.ImageUploadRepo
     public class ImageUploadRepository : IImageUploadRepository
     {
         private readonly IWebHostEnvironment _env;
-        public ImageUploadRepository(IWebHostEnvironment env)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ImageUploadRepository(IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor)
         {
             _env = env;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public void ImageDelete(string imageUrl)
@@ -54,8 +56,8 @@ namespace AssetManagement.Repositories.Repos.ImageUploadRepo
             }
 
             // Create URLs for the saved files
-            var fileUrl = $"/images/{fileName}";
-
+            // var fileUrl = $"/images/{fileName}";
+            var fileUrl = $"{_httpContextAccessor.HttpContext?.Request.Scheme}://{_httpContextAccessor.HttpContext?.Request.Host}/images/{fileName}";
             return fileUrl;
         }
     }

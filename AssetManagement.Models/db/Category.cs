@@ -11,7 +11,7 @@ namespace AssetManagement.Models.db
         [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
-        [Required]
+        public long? Price { get; set; }
         public int Active { get; set; }
     }
 }

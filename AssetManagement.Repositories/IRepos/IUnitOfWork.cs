@@ -14,6 +14,8 @@ using AssetManagement.Repositories.IRepos.IFamilyMemberRepo;
 using AssetManagement.Repositories.IRepos.IUserRepo;
 using AssetManagement.Repositories.IRepos.IImageUpload;
 using AssetManagement.Repositories.IRepos.IHistoryRepo;
+using AssetManagement.Repositories.IRepos.IAssignRepo;
+using AssetManagement.Repositories.IRepos.IPaymentRepo;
 
 namespace AssetManagement.Repositories.IRepos
 {
@@ -31,6 +33,8 @@ namespace AssetManagement.Repositories.IRepos
         public IUserRepository Users { get; }
         public IImageUploadRepository Image { get; }
         public IHistoryRepositoy Histories { get; }
+        public IAssignRepository Assign { get; }
+        public IPaymentRepository Payment { get; }
         Task<int> Save();
     }
 }

@@ -22,7 +22,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetAllFlat(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -31,7 +31,7 @@ namespace AssetManagement.WebApi.controllers
                 var genericReq = new GenericRequest<Flat>()
                 {
                     Expression = null,
-                    IncludeProperties = null,
+                    IncludeProperties = "Category,House",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
@@ -70,7 +70,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetFlat(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -79,7 +79,7 @@ namespace AssetManagement.WebApi.controllers
                 var genericReq = new GenericRequest<Flat>()
                 {
                     Expression = x => x.Id == Id,
-                    IncludeProperties = null,
+                    IncludeProperties = "Category,House",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
@@ -118,7 +118,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> CreateFlat([FromBody] FlatCreateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -127,12 +127,14 @@ namespace AssetManagement.WebApi.controllers
                 Flat flatToCreate = new()
                 {
                     Name = request.Name,
-                    FloorNo = request.FloorNo,
-                    TotalRoom = request.TotalRoom,
-                    Price = request.Price,
-                    CategoryId = request.CategoryId,
-                    HouseId = request.HouseId,
-                    Active = request.Active,
+                    FloorNo = int.Parse(request.FloorNo),
+                    TotalRoom = int.Parse(request.TotalRoom),
+                    AssignedId = string.Empty,
+                    CategoryId = int.Parse(request.CategoryId),
+                    HouseId = int.Parse(request.HouseId),
+                    Active = int.Parse(request.Active),
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow,
                 };
                 _unitOfWork.Flats?.AddAsync(flatToCreate);
                 var result = await _unitOfWork.Save();
@@ -145,7 +147,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Create Successful";
                 return response;
 
             }
@@ -169,7 +171,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> UpdateFlat([FromBody] FlatUpdateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -191,12 +193,11 @@ namespace AssetManagement.WebApi.controllers
                     return response;
                 }
                 flatData.Name = (request.Name == null || request.Name == "") ? flatData.Name : request.Name;
-                flatData.FloorNo = request.FloorNo == 0 ? flatData.FloorNo : request.FloorNo;
-                flatData.TotalRoom = request.TotalRoom == 0 ? flatData.TotalRoom : request.TotalRoom;
-                flatData.Price = request.Price == 0 ? flatData.Price : request.Price;
-                flatData.CategoryId = request.CategoryId == 0 ? flatData.CategoryId : request.CategoryId;
-                flatData.HouseId = request.HouseId == 0 ? flatData.HouseId : request.HouseId;
-                flatData.Active = request.Active;
+                flatData.FloorNo = int.Parse(request.FloorNo) == 0 ? flatData.FloorNo : int.Parse(request.FloorNo);
+                flatData.TotalRoom = int.Parse(request.TotalRoom) == 0 ? flatData.TotalRoom : int.Parse(request.TotalRoom);
+                flatData.CategoryId = int.Parse(request.CategoryId) == 0 ? flatData.CategoryId : int.Parse(request.CategoryId);
+                flatData.HouseId = int.Parse(request.HouseId) == 0 ? flatData.HouseId : int.Parse(request.HouseId);
+                flatData.Active = int.Parse(request.Active);
 
                 _unitOfWork.Flats?.Update(flatData);
                 var result = await _unitOfWork.Save();
@@ -209,7 +210,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Update Successful";
                 return response;
 
             }
@@ -233,47 +234,47 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin")]
-        public async Task<ApiResponse> DeleteFLat(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteFlat(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (Id == 0)
+            if (Ids == null || Ids.Count == 0)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - No IDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<Flat>
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => Ids.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var flatData = await _unitOfWork.Flats.GetAsync(genericReq);
-                if (flatData == null)
+                var flatToDelete = await _unitOfWork.Flats.GetAllAsync(genericReq);
+                if (flatToDelete == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - flat data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - No flat found with the provided IDs: {Ids}";
                     return response;
                 }
 
-                _unitOfWork.Flats.Remove(flatData);
+                _unitOfWork.Flats.RemoveRange(flatToDelete);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting flat";
+                    response.Message = "Something went wrong while deleting flat";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = $"{flatToDelete.Count} Flat(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)

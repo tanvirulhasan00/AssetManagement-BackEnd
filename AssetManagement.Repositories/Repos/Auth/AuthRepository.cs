@@ -25,14 +25,16 @@ namespace AssetManagement.Repositories.Repos.Auth
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly string _secretKey;
         private readonly IWebHostEnvironment _env;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthRepository(AssetManagementDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, string secretKey, IWebHostEnvironment env)
+        public AuthRepository(AssetManagementDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, string secretKey, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _secretKey = secretKey;
             _env = env;
+            _httpContextAccessor = httpContextAccessor;
 
         }
         public bool IsUniqueUser(string nidNumber)
@@ -93,7 +95,7 @@ namespace AssetManagement.Repositories.Repos.Auth
 
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Login Successful";
                 response.Result = loginRes;
                 return response;
             }
@@ -140,23 +142,8 @@ namespace AssetManagement.Repositories.Repos.Auth
             }
 
             // // Create URLs for the saved files
-            var profilePicUrl = $"/images/{profilePicName}";
-            var nidPicUrl = $"/images/{nidPicName}";
-
-
-            // var profilePicUrl = "";
-            // var nidPicUrl = "";
-
-            // if (request.ProfilePicUrl != null)
-            // {
-
-            //     profilePicUrl = await _unitOfWork.Image.ImageUpload(request.ProfilePicUrl);
-            // }
-            // if (request.NidPicUrl != null)
-            // {
-
-            //     nidPicUrl = await _unitOfWork.Image.ImageUpload(request.NidPicUrl);
-            // }
+            var profilePicUrl = $"{_httpContextAccessor.HttpContext?.Request.Scheme}://{_httpContextAccessor.HttpContext?.Request.Host}/images/{profilePicName}";
+            var nidPicUrl = $"{_httpContextAccessor.HttpContext?.Request.Scheme}://{_httpContextAccessor.HttpContext?.Request.Host}/images/{nidPicName}";
 
             ApplicationUser user = new()
             {
@@ -232,7 +219,7 @@ namespace AssetManagement.Repositories.Repos.Auth
 
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Password update successful";
                 return response;
             }
             catch (Exception ex)

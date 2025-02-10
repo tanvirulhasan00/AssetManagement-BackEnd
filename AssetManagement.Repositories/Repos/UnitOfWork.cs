@@ -32,6 +32,11 @@ using AssetManagement.Repositories.IRepos.IImageUpload;
 using AssetManagement.Repositories.Repos.ImageUploadRepo;
 using AssetManagement.Repositories.IRepos.IHistoryRepo;
 using AssetManagement.Repositories.Repos.HistoryRepo;
+using Microsoft.AspNetCore.Http;
+using AssetManagement.Repositories.IRepos.IAssignRepo;
+using AssetManagement.Repositories.Repos.AssignRepo;
+using AssetManagement.Repositories.IRepos.IPaymentRepo;
+using AssetManagement.Repositories.Repos.PaymentRepo;
 
 namespace AssetManagement.Repositories.Repos
 {
@@ -49,20 +54,24 @@ namespace AssetManagement.Repositories.Repos
         public IUserRepository Users { get; private set; }
         public IImageUploadRepository Image { get; private set; }
         public IHistoryRepositoy Histories { get; private set; }
+        public IAssignRepository Assign { get; private set; }
+        public IPaymentRepository Payment { get; private set; }
         private readonly AssetManagementDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly string SecretKey;
         private readonly IWebHostEnvironment _env;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UnitOfWork(AssetManagementDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IWebHostEnvironment env)
+        public UnitOfWork(AssetManagementDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             SecretKey = configuration["TokenSetting:SecretKey"] ?? "";
             _env = env;
             _userManager = userManager;
             _roleManager = roleManager;
-            Auth = new AuthRepository(_context, _userManager, _roleManager, SecretKey, _env);
+            _httpContextAccessor = httpContextAccessor;
+            Auth = new AuthRepository(_context, _userManager, _roleManager, SecretKey, _env, _httpContextAccessor);
             Division = new DivisionRepository(_context);
             District = new DistrictRepository(_context);
             Categories = new CategoryRepository(_context);
@@ -72,8 +81,10 @@ namespace AssetManagement.Repositories.Repos
             Renters = new RenterRepository(_context);
             FamilyMembers = new FamilyMemberRepository(_context);
             Users = new UserRepositoy(_context, _env);
-            Image = new ImageUploadRepository(_env);
+            Image = new ImageUploadRepository(_env, _httpContextAccessor);
             Histories = new HistoryRepository(_context);
+            Assign = new AssignRepository(_context);
+            Payment = new PaymentRepository(_context);
         }
         public async Task<int> Save()
         {

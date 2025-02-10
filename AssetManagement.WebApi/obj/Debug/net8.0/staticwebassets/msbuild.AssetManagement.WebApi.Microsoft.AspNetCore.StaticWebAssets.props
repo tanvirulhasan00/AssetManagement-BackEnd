@@ -18,6 +18,60 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\0334d7f0-fb77-4f44-93c4-677c84d9933b.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\05819863-d348-4bce-8394-fc12127ab399.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/05819863-d348-4bce-8394-fc12127ab399.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\05819863-d348-4bce-8394-fc12127ab399.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\05d8e935-fd10-428e-b5c3-3194dab2ce8c.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/05d8e935-fd10-428e-b5c3-3194dab2ce8c.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5cra0zl6b</Fingerprint>
+      <Integrity>u88PipXfO9n0A1xaFUNuPkD+Vj3v+mZ08ZkLaAbac/A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\05d8e935-fd10-428e-b5c3-3194dab2ce8c.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\06e5d96b-81ce-484e-8739-0cdf53afcedc.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/06e5d96b-81ce-484e-8739-0cdf53afcedc.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>izsx088due</Fingerprint>
+      <Integrity>/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\06e5d96b-81ce-484e-8739-0cdf53afcedc.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\06fd8550-2d41-4c7a-a428-c8d4b68d2efb.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -36,6 +90,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\06fd8550-2d41-4c7a-a428-c8d4b68d2efb.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\07c73710-ccde-475d-b5f0-6014ffd2d578.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/07c73710-ccde-475d-b5f0-6014ffd2d578.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\07c73710-ccde-475d-b5f0-6014ffd2d578.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\089dc97d-cc6e-465d-be8a-18ace1c31d5a.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -53,6 +125,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\089dc97d-cc6e-465d-be8a-18ace1c31d5a.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\08c1de29-b6d1-409f-8e63-10a1f220fdca.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/08c1de29-b6d1-409f-8e63-10a1f220fdca.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>izsx088due</Fingerprint>
+      <Integrity>/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\08c1de29-b6d1-409f-8e63-10a1f220fdca.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\0e9147fb-4eda-4cc9-8c2b-d03f8f80200f.jpg'))">
       <SourceType>Package</SourceType>
@@ -143,24 +233,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\1acb3561-d855-40a9-9710-a754512d741b.jpeg'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\1d152fcf-23b5-4e00-b9b4-b1bf85d87e1d'))">
-      <SourceType>Package</SourceType>
-      <SourceId>AssetManagement.WebApi</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/AssetManagement.WebApi</BasePath>
-      <RelativePath>images/1d152fcf-23b5-4e00-b9b4-b1bf85d87e1d</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5ipweew5fc</Fingerprint>
-      <Integrity>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\1d152fcf-23b5-4e00-b9b4-b1bf85d87e1d'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\21776d5e-612f-4498-bc98-82f44b45301a.jpg'))">
       <SourceType>Package</SourceType>
@@ -288,6 +360,42 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\35231a52-88b9-4644-8fe9-7998d1c4514a.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3632ba14-d81c-477d-b1c9-2c1d2bb8b8a7.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/3632ba14-d81c-477d-b1c9-2c1d2bb8b8a7.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3632ba14-d81c-477d-b1c9-2c1d2bb8b8a7.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3b63b037-8582-4cfb-84bd-4821eaad06ec.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/3b63b037-8582-4cfb-84bd-4821eaad06ec.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3b63b037-8582-4cfb-84bd-4821eaad06ec.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3d8b8df3-26ec-4699-880f-9dd09eaedd70.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -305,6 +413,42 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3d8b8df3-26ec-4699-880f-9dd09eaedd70.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3dd39b84-ca7e-4584-a909-90765d3567a3.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/3dd39b84-ca7e-4584-a909-90765d3567a3.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5p0oqoiq5i</Fingerprint>
+      <Integrity>d4wGz9bcKf3FRQtWlREQ0spHqX4rdN5ZxWHL34dIIpA=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3dd39b84-ca7e-4584-a909-90765d3567a3.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\438100f2-a1db-4c35-9d81-a9edc1b502d0.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/438100f2-a1db-4c35-9d81-a9edc1b502d0.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>brzptnf14g</Fingerprint>
+      <Integrity>R6oSMaJhBFZQlhk6CzOIiLHJ1xz5RJjdCoaV8KWsnHU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\438100f2-a1db-4c35-9d81-a9edc1b502d0.JPG'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\45566794-93f3-4136-9462-308ea8309c95.jpg'))">
       <SourceType>Package</SourceType>
@@ -342,6 +486,42 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4819919a-0cd5-46a3-bf17-e767989d974f.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\48a5a629-c2a4-458f-bf1c-ca91a4ee670e.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/48a5a629-c2a4-458f-bf1c-ca91a4ee670e.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ic62p1syj1</Fingerprint>
+      <Integrity>oimuqG3ugGlCsRiq2I/vLUuNMzRCrS1Y0ee93C5NPXU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\48a5a629-c2a4-458f-bf1c-ca91a4ee670e.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4983f368-7a7d-4d1d-969b-e84dcd73cc45.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/4983f368-7a7d-4d1d-969b-e84dcd73cc45.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>2eoi595b32</Fingerprint>
+      <Integrity>Brvvzg/FEpiMmNEyDG9ObqYkmpKmaG3eR92TsTvTgMI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4983f368-7a7d-4d1d-969b-e84dcd73cc45.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4d26ff69-c2aa-436e-8ff7-79aaaf976cf2.jpeg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -359,6 +539,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4d26ff69-c2aa-436e-8ff7-79aaaf976cf2.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4ea8f4ae-48fa-481a-839c-56ccc40552c0'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/4ea8f4ae-48fa-481a-839c-56ccc40552c0</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5ipweew5fc</Fingerprint>
+      <Integrity>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4ea8f4ae-48fa-481a-839c-56ccc40552c0'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4f1af296-b373-4e0f-9c63-5eef186c615e.jpg'))">
       <SourceType>Package</SourceType>
@@ -378,6 +576,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4f1af296-b373-4e0f-9c63-5eef186c615e.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5341742d-dac0-45f0-bf93-4e737f7b75d4.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/5341742d-dac0-45f0-bf93-4e737f7b75d4.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>izsx088due</Fingerprint>
+      <Integrity>/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5341742d-dac0-45f0-bf93-4e737f7b75d4.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\54269afd-948b-4481-a1bc-d87236bb7be5.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -396,23 +612,41 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\54269afd-948b-4481-a1bc-d87236bb7be5.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5e634f02-3209-49e4-bb9c-191d312da9cc.jpeg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\57bfd6ef-df9a-46ee-a1d7-949eb1499a19.JPG'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/AssetManagement.WebApi</BasePath>
-      <RelativePath>images/5e634f02-3209-49e4-bb9c-191d312da9cc.jpeg</RelativePath>
+      <RelativePath>images/57bfd6ef-df9a-46ee-a1d7-949eb1499a19.JPG</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>krnak2x20p</Fingerprint>
-      <Integrity>MP2QMJH9CJ76D0rNj3gB3HpzBSAH+0qx1FsCFO0Q8kw=</Integrity>
+      <Fingerprint>ic62p1syj1</Fingerprint>
+      <Integrity>oimuqG3ugGlCsRiq2I/vLUuNMzRCrS1Y0ee93C5NPXU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5e634f02-3209-49e4-bb9c-191d312da9cc.jpeg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\57bfd6ef-df9a-46ee-a1d7-949eb1499a19.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5c4cdbee-ec82-412e-a139-75ce50e3a937.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/5c4cdbee-ec82-412e-a139-75ce50e3a937.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5c4cdbee-ec82-412e-a139-75ce50e3a937.JPG'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\612ff01a-bdb2-483c-989f-dc79611a9ba8.jpg'))">
       <SourceType>Package</SourceType>
@@ -432,6 +666,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\612ff01a-bdb2-483c-989f-dc79611a9ba8.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\62e53746-bd91-4dda-8f3f-13ccbe2489c9.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/62e53746-bd91-4dda-8f3f-13ccbe2489c9.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>94gy7m2xrh</Fingerprint>
+      <Integrity>55rmU50Im8XuVrD54Vp+yr4VU75nhGqrjy0HlB7vq+o=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\62e53746-bd91-4dda-8f3f-13ccbe2489c9.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\66510c35-d356-404c-b47e-ee3ffdbd5102.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -449,6 +701,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\66510c35-d356-404c-b47e-ee3ffdbd5102.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\6b0083e1-4e8c-47b8-bd8f-7821f7fcba5c.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/6b0083e1-4e8c-47b8-bd8f-7821f7fcba5c.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5cra0zl6b</Fingerprint>
+      <Integrity>u88PipXfO9n0A1xaFUNuPkD+Vj3v+mZ08ZkLaAbac/A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\6b0083e1-4e8c-47b8-bd8f-7821f7fcba5c.JPG'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\706ff4f4-ffe9-41cb-9bb7-ba56658a0afb.jpg'))">
       <SourceType>Package</SourceType>
@@ -684,24 +954,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\974479f4-1221-4329-bfc8-4a0f31aba896.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\986be0e0-1d16-405c-a79e-2e619b8adc69.jpeg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>AssetManagement.WebApi</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/AssetManagement.WebApi</BasePath>
-      <RelativePath>images/986be0e0-1d16-405c-a79e-2e619b8adc69.jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>2eoi595b32</Fingerprint>
-      <Integrity>Brvvzg/FEpiMmNEyDG9ObqYkmpKmaG3eR92TsTvTgMI=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\986be0e0-1d16-405c-a79e-2e619b8adc69.jpeg'))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\992d0e80-62cc-4e45-99d5-78b4855aa90f.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -810,6 +1062,42 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\9df2eec7-eafc-4528-8584-02f78c457061.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\9f369c2e-bd4c-4ae3-9a0a-d21253a0fdf2'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/9f369c2e-bd4c-4ae3-9a0a-d21253a0fdf2</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5ipweew5fc</Fingerprint>
+      <Integrity>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\9f369c2e-bd4c-4ae3-9a0a-d21253a0fdf2'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\a08d8aeb-500f-4087-9422-b99ead0b9702.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/a08d8aeb-500f-4087-9422-b99ead0b9702.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\a08d8aeb-500f-4087-9422-b99ead0b9702.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\a2105e02-275c-494e-a2bf-d0f6a351f4c1.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -827,6 +1115,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\a2105e02-275c-494e-a2bf-d0f6a351f4c1.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\a68d15b2-39b7-424a-8ea9-77d326466ec8.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/a68d15b2-39b7-424a-8ea9-77d326466ec8.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gfyq7p1c23</Fingerprint>
+      <Integrity>NFSnlENxwYHEtZ2h1Yu6YtfTTPdJyvbtdbsRvCrkVVc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\a68d15b2-39b7-424a-8ea9-77d326466ec8.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\aae1654c-50b9-4cf8-adca-ba98a8f81838.jpg'))">
       <SourceType>Package</SourceType>
@@ -846,6 +1152,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\aae1654c-50b9-4cf8-adca-ba98a8f81838.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\b28ccd42-ad4e-44bf-a452-770859d77c4e.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/b28ccd42-ad4e-44bf-a452-770859d77c4e.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>izsx088due</Fingerprint>
+      <Integrity>/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\b28ccd42-ad4e-44bf-a452-770859d77c4e.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\b52f83c7-1c8b-4dca-b3ec-e169a7b56745.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -863,6 +1187,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\b52f83c7-1c8b-4dca-b3ec-e169a7b56745.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\b5e1b66e-5cb5-41fc-ab7e-97b4e7294876.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/b5e1b66e-5cb5-41fc-ab7e-97b4e7294876.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5cra0zl6b</Fingerprint>
+      <Integrity>u88PipXfO9n0A1xaFUNuPkD+Vj3v+mZ08ZkLaAbac/A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\b5e1b66e-5cb5-41fc-ab7e-97b4e7294876.JPG'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\b8d2af93-f5a1-4d60-ac8a-853ae1fd84d8.jpg'))">
       <SourceType>Package</SourceType>
@@ -990,6 +1332,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\cd600b94-8c54-4038-a6e9-78c0b2abd3bb.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d139acf7-82b4-4125-80b6-9b85fe675dad.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/d139acf7-82b4-4125-80b6-9b85fe675dad.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5cra0zl6b</Fingerprint>
+      <Integrity>u88PipXfO9n0A1xaFUNuPkD+Vj3v+mZ08ZkLaAbac/A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d139acf7-82b4-4125-80b6-9b85fe675dad.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d1ddee77-aca3-4674-87a3-fe582b5b1ec6.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -1007,6 +1367,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d1ddee77-aca3-4674-87a3-fe582b5b1ec6.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d7b1ee4f-e80e-434f-9d21-139d7c0e8e2b.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/d7b1ee4f-e80e-434f-9d21-139d7c0e8e2b.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>krnak2x20p</Fingerprint>
+      <Integrity>MP2QMJH9CJ76D0rNj3gB3HpzBSAH+0qx1FsCFO0Q8kw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d7b1ee4f-e80e-434f-9d21-139d7c0e8e2b.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d812a315-7194-48b2-a8f6-ae4c1443d1e7.jpg'))">
       <SourceType>Package</SourceType>
@@ -1062,6 +1440,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d9dbfa2f-bb50-466e-a0c0-2c98f2ddf11d.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d9e526a4-6824-49de-97b3-a4bbd74a0afa.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/d9e526a4-6824-49de-97b3-a4bbd74a0afa.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5cra0zl6b</Fingerprint>
+      <Integrity>u88PipXfO9n0A1xaFUNuPkD+Vj3v+mZ08ZkLaAbac/A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\d9e526a4-6824-49de-97b3-a4bbd74a0afa.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\da617fc0-990a-4d9f-8a50-5030fe5ffb50.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -1098,6 +1494,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\df10ecb9-643d-4f03-a568-4732f7d081c7.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\df60239f-e0d6-417b-8c49-1944158caeb2.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/df60239f-e0d6-417b-8c49-1944158caeb2.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\df60239f-e0d6-417b-8c49-1944158caeb2.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\f18e34dc-f427-4001-ba18-86ef031c6b25.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>AssetManagement.WebApi</SourceId>
@@ -1115,6 +1529,78 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\f18e34dc-f427-4001-ba18-86ef031c6b25.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\f5f8f4fd-c874-45d7-b52b-971450e98d84.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/f5f8f4fd-c874-45d7-b52b-971450e98d84.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5cra0zl6b</Fingerprint>
+      <Integrity>u88PipXfO9n0A1xaFUNuPkD+Vj3v+mZ08ZkLaAbac/A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\f5f8f4fd-c874-45d7-b52b-971450e98d84.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\f81c8d95-ce73-4278-874e-8af2fa14d71b.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/f81c8d95-ce73-4278-874e-8af2fa14d71b.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>u74r4eqzn8</Fingerprint>
+      <Integrity>5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\f81c8d95-ce73-4278-874e-8af2fa14d71b.JPG'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\fd137378-6ee7-4bc5-9cd3-a1f384aed116.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/fd137378-6ee7-4bc5-9cd3-a1f384aed116.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>izsx088due</Fingerprint>
+      <Integrity>/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\fd137378-6ee7-4bc5-9cd3-a1f384aed116.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\fd4d9272-6ee4-4a8b-9b80-fa1594b06cc4.JPG'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AssetManagement.WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AssetManagement.WebApi</BasePath>
+      <RelativePath>images/fd4d9272-6ee4-4a8b-9b80-fa1594b06cc4.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5cra0zl6b</Fingerprint>
+      <Integrity>u88PipXfO9n0A1xaFUNuPkD+Vj3v+mZ08ZkLaAbac/A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\fd4d9272-6ee4-4a8b-9b80-fa1594b06cc4.JPG'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

@@ -25,7 +25,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllDistrict(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -72,7 +72,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetDistrict(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -119,7 +119,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateDistrict([FromBody] DiviNDisCreateReqDto districtDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -151,7 +151,7 @@ namespace AssetManagement.WebApi.controllers
                 District districtToCreate = new()
                 {
                     Name = districtDto.Name,
-                    Active = districtDto.Active,
+                    Active = int.Parse(districtDto.Active),
                 };
                 await _unitOfWork.District.AddAsync(districtToCreate);
                 int res = await _unitOfWork.Save();
@@ -164,7 +164,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Create Successful";
                 return response;
 
             }
@@ -189,7 +189,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> UpdateDistrict([FromBody] DiviNDisReqDto districtDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -218,7 +218,7 @@ namespace AssetManagement.WebApi.controllers
                     return response;
                 }
                 districtData.Name = (districtDto.Name == null || districtDto.Name == "") ? districtData.Name : districtDto.Name;
-                districtData.Active = districtDto.Active;
+                districtData.Active = int.Parse(districtDto.Active);
                 _unitOfWork.District.Update(districtData);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
@@ -230,7 +230,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Update Successful";
                 return response;
 
             }
@@ -255,47 +255,47 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> DeleteDistrict(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteDistrict(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (Id == 0)
+            if (Ids == null || Ids.Count == 0)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - No IDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<District>
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => Ids.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var districtData = await _unitOfWork.District.GetAsync(genericReq);
-                if (districtData == null)
+                var districtToDelete = await _unitOfWork.District.GetAllAsync(genericReq);
+                if (districtToDelete == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - district data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - No district found with the provided IDs: {Ids}";
                     return response;
                 }
 
-                _unitOfWork.District.Remove(districtData);
+                _unitOfWork.District.RemoveRange(districtToDelete);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting district";
+                    response.Message = "Something went wrong while deleting district";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = $"{districtToDelete.Count} District(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)
@@ -311,7 +311,7 @@ namespace AssetManagement.WebApi.controllers
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = ex.Message;
-                response.Error = ex;
+                response.Error = ex.GetType().Name;
                 return response;
 
             }

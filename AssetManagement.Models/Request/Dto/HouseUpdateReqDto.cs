@@ -10,13 +10,12 @@ namespace AssetManagement.Models.Request.Dto
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public int AreaId { get; set; }
-        public int TotalFloor { get; set; }
-        public int TotalFlat { get; set; }
+        public string? AreaId { get; set; }
+        public string? TotalFloor { get; set; }
+        public string? TotalFlat { get; set; }
         public string? Road { get; set; }
-        public long PostCode { get; set; }
-        [Required]
-        public int Active { get; set; }
+        public string? PostCode { get; set; }
+        public string? Active { get; set; }
 
         public DateTime UpdatedDate { get; set; }
     }

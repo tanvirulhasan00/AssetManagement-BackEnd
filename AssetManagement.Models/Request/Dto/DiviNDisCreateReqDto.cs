@@ -10,7 +10,7 @@ namespace AssetManagement.Models.Request.Dto
     {
         public string? Name { get; set; }
         [Required]
-        public int Active { get; set; }
+        public string? Active { get; set; }
 
     }
 }

@@ -7,6 +7,7 @@ using AssetManagement.Models.db;
 using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Request.Generic;
 using AssetManagement.Models.Response.Api;
+using AssetManagement.Models.Response.Dto;
 using AssetManagement.Repositories.IRepos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllUser(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -48,10 +49,21 @@ namespace AssetManagement.WebApi.controllers
                     response.Message = "User not found";
                     return response;
                 }
+                var userRes = users.Select(s => new UserDto
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    UserName = s.UserName,
+                    Address = s.Address,
+                    PhoneNumber = s.PhoneNumber,
+                    NidNumber = s.NidNumber,
+                    Email = s.Email,
+                    Active = s.Active,
+                });
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
                 response.Message = "Sucessful";
-                response.Result = users;
+                response.Result = userRes;
                 return response;
             }
             catch (TaskCanceledException ex)
@@ -74,7 +86,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetUser(string Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -121,7 +133,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> UpdateUser(UserInfoUpdateReqDto userDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -220,60 +232,48 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin")]
-        public async Task<ApiResponse> DeleteUser(string userId, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteUser(List<string> userIds, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (userId == "" || userId == null)
+            if (userIds.Count == 0 || userIds == null)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful - UserId needed to delete";
+                response.Message = "Unsuccessful - No UserIDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<ApplicationUser>
                 {
-                    Expression = x => x.Id == userId,
+                    Expression = x => userIds.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var userData = await _unitOfWork.Users.GetAsync(genericReq);
+                var userData = await _unitOfWork.Users.GetAllAsync(genericReq);
                 if (userData == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - user not found with the id {userId}";
+                    response.Message = $"Unsuccessful - user not found with the id {userIds}";
                     return response;
                 }
 
-                // Get the root path of wwwroot
-                var rootPath = _env.WebRootPath;
-
-                // Delete old profile picture if it exists
-                if (!string.IsNullOrEmpty(userData.ProfilePicUrl))
+                foreach (var user in userData)
                 {
-                    var oldProfilePicPath = Path.Combine(rootPath, userData.ProfilePicUrl.TrimStart('/'));
-                    if (System.IO.File.Exists(oldProfilePicPath))
+                    if (!string.IsNullOrEmpty(user.ProfilePicUrl))
                     {
-                        System.IO.File.Delete(oldProfilePicPath);
+                        _unitOfWork.Image.ImageDelete(user.ProfilePicUrl);
+                    }
+                    if (!string.IsNullOrEmpty(user.NidPicUrl))
+                    {
+                        _unitOfWork.Image.ImageDelete(user.NidPicUrl);
                     }
                 }
 
-                // Delete old NID picture if it exists
-                if (!string.IsNullOrEmpty(userData.NidPicUrl))
-                {
-                    var oldNidPicPath = Path.Combine(rootPath, userData.NidPicUrl.TrimStart('/'));
-                    if (System.IO.File.Exists(oldNidPicPath))
-                    {
-                        System.IO.File.Delete(oldNidPicPath);
-                    }
-                }
-
-
-                _unitOfWork.Users.Remove(userData);
+                _unitOfWork.Users.RemoveRange(userData);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
@@ -284,7 +284,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "User deleted successfully";
+                response.Message = $"{userData.Count} User(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)

@@ -180,6 +180,9 @@ app.MapGet("/", context =>
     return Task.CompletedTask;
 });
 
+// Enable serving static files from wwwroot
+app.UseStaticFiles();
+
 //app.MapIdentityApi<ApplicationUser>();
 
 app.UseCors("AllowSpecificOrigins");

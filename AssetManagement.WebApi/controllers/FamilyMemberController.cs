@@ -22,6 +22,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllFamilyMember(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -30,7 +31,7 @@ namespace AssetManagement.WebApi.controllers
                 var genericReq = new GenericRequest<FamilyMember>()
                 {
                     Expression = null,
-                    IncludeProperties = null,
+                    IncludeProperties = "Renter",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
@@ -69,6 +70,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetFamilyMember(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -77,7 +79,7 @@ namespace AssetManagement.WebApi.controllers
                 var genericReq = new GenericRequest<FamilyMember>()
                 {
                     Expression = x => x.Id == Id,
-                    IncludeProperties = null,
+                    IncludeProperties = "Renter",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
@@ -116,6 +118,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateFamilyMember(FamilyMemberCreateDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -152,9 +155,9 @@ namespace AssetManagement.WebApi.controllers
                     Address = request.Address,
                     ImageUrl = imageUrl,
                     NidImageUrl = nidImageUrl,
-                    IsEmergencyContact = request.IsEmergencyContact,
+                    IsEmergencyContact = int.Parse(request.IsEmergencyContact),
                     RenterId = request.RenterId,
-                    Active = request.Active,
+                    Active = int.Parse(request.Active),
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,
                 };
@@ -169,7 +172,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Create Successful";
                 return response;
 
             }
@@ -193,6 +196,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> UpdateFamilyMember(FamilyMemberUpdateDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -245,9 +249,9 @@ namespace AssetManagement.WebApi.controllers
                 familyMemberData.Address = (request.Address == null || request.Address == "") ? familyMemberData.Address : request.Address;
                 familyMemberData.ImageUrl = (imageUrl == null || imageUrl == "") ? familyMemberData.ImageUrl : imageUrl;
                 familyMemberData.NidImageUrl = (nidImageUrl == null || nidImageUrl == "") ? familyMemberData.NidImageUrl : nidImageUrl;
-                familyMemberData.IsEmergencyContact = request.IsEmergencyContact == 0 ? familyMemberData.IsEmergencyContact : request.IsEmergencyContact;
+                familyMemberData.IsEmergencyContact = int.Parse(request.IsEmergencyContact) == 0 ? familyMemberData.IsEmergencyContact : int.Parse(request.IsEmergencyContact);
                 familyMemberData.RenterId = request.RenterId == 0 ? familyMemberData.RenterId : request.RenterId;
-                familyMemberData.Active = request.Active;
+                familyMemberData.Active = int.Parse(request.Active);
                 familyMemberData.UpdatedDate = DateTime.UtcNow;
 
                 _unitOfWork.FamilyMembers?.Update(familyMemberData);
@@ -261,7 +265,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Update Successful";
                 return response;
 
             }
@@ -285,57 +289,60 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin")]
-        public async Task<ApiResponse> DeleteFamilyMember(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteFamilyMember(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (Id == 0)
+            if (Ids == null || Ids.Count == 0)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - No IDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<FamilyMember>
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => Ids.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var familyMemberData = await _unitOfWork.FamilyMembers.GetAsync(genericReq);
+                var familyMemberData = await _unitOfWork.FamilyMembers.GetAllAsync(genericReq);
                 if (familyMemberData == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - family member data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - family member data not found with the id {Ids}";
                     return response;
                 }
 
-                if (!string.IsNullOrEmpty(familyMemberData.ImageUrl))
+                foreach (var member in familyMemberData)
                 {
-                    _unitOfWork.Image.ImageDelete(familyMemberData.ImageUrl);
-                }
-                if (!string.IsNullOrEmpty(familyMemberData.NidImageUrl))
-                {
-                    _unitOfWork.Image.ImageDelete(familyMemberData.NidImageUrl);
+                    if (!string.IsNullOrEmpty(member.ImageUrl))
+                    {
+                        _unitOfWork.Image.ImageDelete(member.ImageUrl);
+                    }
+                    if (!string.IsNullOrEmpty(member.NidImageUrl))
+                    {
+                        _unitOfWork.Image.ImageDelete(member.NidImageUrl);
+                    }
                 }
 
 
-                _unitOfWork.FamilyMembers.Remove(familyMemberData);
+                _unitOfWork.FamilyMembers.RemoveRange(familyMemberData);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting family member";
+                    response.Message = "Something went wrong while deleting family member";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = $"{familyMemberData.Count} FamilyMember(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)

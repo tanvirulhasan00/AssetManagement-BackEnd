@@ -35,7 +35,6 @@ namespace AssetManagement.Models.db
 
         public DateTime StartDate { get; set; }
 
-        [Required]
         public int Active { get; set; }
 
         public DateTime CreatedDate { get; set; }

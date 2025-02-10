@@ -25,7 +25,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllCategory(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -72,7 +72,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetCategory(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -119,15 +119,15 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        // [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> CreateCategory([FromBody] DiviNDisCreateReqDto categoryDto, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin,manager")]
+        public async Task<ApiResponse> CreateCategory([FromBody] CategoryCreateDto categoryDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             if (categoryDto.Name == null || categoryDto.Name == "")
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - name is empty";
                 return response;
             }
 
@@ -151,7 +151,8 @@ namespace AssetManagement.WebApi.controllers
                 Category categoryToCreate = new()
                 {
                     Name = categoryDto.Name,
-                    Active = categoryDto.Active,
+                    Price = categoryDto.Price,
+                    Active = int.Parse(categoryDto.Active),
                 };
                 await _unitOfWork.Categories.AddAsync(categoryToCreate);
                 int res = await _unitOfWork.Save();
@@ -164,7 +165,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Create Successful";
                 return response;
 
             }
@@ -189,8 +190,8 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        // [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> UpdateCategory([FromBody] DiviNDisReqDto categoryDto, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin,manager")]
+        public async Task<ApiResponse> UpdateCategory([FromBody] CategoryUpdateDto categoryDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             if (categoryDto.Id == 0)
@@ -214,11 +215,12 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - category data not found with the id {categoryDto.Id}";
+                    response.Message = $"Unsuccessful - category not found with the id {categoryDto.Id}";
                     return response;
                 }
                 categoryData.Name = (categoryDto.Name == null || categoryDto.Name == "") ? categoryData.Name : categoryDto.Name;
-                categoryData.Active = categoryDto.Active;
+                categoryData.Price = (categoryDto.Price == 0) ? categoryData.Price : categoryDto.Price;
+                categoryData.Active = int.Parse(categoryDto.Active);
                 _unitOfWork.Categories.Update(categoryData);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
@@ -230,7 +232,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Update Successful";
                 return response;
 
             }
@@ -255,47 +257,47 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> DeleteCategory(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteCategory(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (Id == 0)
+            if (Ids == null || Ids.Count == 0)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - No IDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<Category>
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => Ids.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var categoryData = await _unitOfWork.Categories.GetAsync(genericReq);
-                if (categoryData == null)
+                var categoryToDelete = await _unitOfWork.Categories.GetAllAsync(genericReq);
+                if (categoryToDelete == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - category data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - No areas found with the provided IDs: {Ids}";
                     return response;
                 }
 
-                _unitOfWork.Categories.Remove(categoryData);
+                _unitOfWork.Categories.RemoveRange(categoryToDelete);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting category";
+                    response.Message = "Something went wrong while deleting category";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = $"{categoryToDelete.Count} Category(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)

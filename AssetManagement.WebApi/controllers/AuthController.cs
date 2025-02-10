@@ -34,7 +34,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("registration")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> Registration(RegistrationReqDto request)
         {
             var response = new ApiResponse();
@@ -98,13 +98,6 @@ namespace AssetManagement.WebApi.controllers
             return response;
         }
 
-        // [HttpPost]
-        // [Route("update-user")]
-        // //[Authorize(Roles = "admin")]
-        // public async Task<ApiResponse> UpdateUserInfo([FromBody] UserInfoUpdateReqDto request)
-        // {
-        //     var response = await _unitOfWork.Auth.UpdateUserInfo(request);
-        //     return response;
-        // }
+
     }
 }

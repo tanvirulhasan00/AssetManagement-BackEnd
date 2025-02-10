@@ -25,7 +25,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllDivision(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -72,7 +72,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetDivision(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -119,7 +119,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateDivision([FromBody] DiviNDisCreateReqDto divisionDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -151,7 +151,7 @@ namespace AssetManagement.WebApi.controllers
                 Division divisionToCreate = new()
                 {
                     Name = divisionDto.Name,
-                    Active = divisionDto.Active,
+                    Active = int.Parse(divisionDto.Active),
                 };
                 await _unitOfWork.Division.AddAsync(divisionToCreate);
                 int res = await _unitOfWork.Save();
@@ -159,12 +159,12 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while creating division";
+                    response.Message = "Something went wrong while creating division";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Create Successful";
                 return response;
 
             }
@@ -189,7 +189,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> UpdateDivision([FromBody] DiviNDisReqDto divisionDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -218,7 +218,7 @@ namespace AssetManagement.WebApi.controllers
                     return response;
                 }
                 divisionData.Name = (divisionDto.Name == null || divisionDto.Name == "") ? divisionData.Name : divisionDto.Name;
-                divisionData.Active = divisionDto.Active;
+                divisionData.Active = int.Parse(divisionDto.Active);
 
                 _unitOfWork.Division.Update(divisionData);
                 int res = await _unitOfWork.Save();
@@ -231,7 +231,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Update Successful";
                 return response;
 
             }
@@ -256,47 +256,47 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> DeleteDivision(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteDivision(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (Id == 0)
+            if (Ids == null || Ids.Count == 0)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - No IDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<Division>
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => Ids.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var divisionData = await _unitOfWork.Division.GetAsync(genericReq);
-                if (divisionData == null)
+                var divisionToDelete = await _unitOfWork.Division.GetAllAsync(genericReq);
+                if (divisionToDelete == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - division data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - No division found with the provided IDs: {Ids}";
                     return response;
                 }
 
-                _unitOfWork.Division.Remove(divisionData);
+                _unitOfWork.Division.RemoveRange(divisionToDelete);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting division";
+                    response.Message = "Something went wrong while deleting division";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = $"{divisionToDelete.Count} Division(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)
@@ -312,7 +312,7 @@ namespace AssetManagement.WebApi.controllers
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = ex.Message;
-                response.Error = ex;
+                response.Error = ex.GetType().Name;
                 return response;
 
             }

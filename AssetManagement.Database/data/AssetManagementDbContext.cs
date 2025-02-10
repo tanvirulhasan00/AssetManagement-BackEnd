@@ -17,6 +17,8 @@ namespace AssetManagement.Database.data
         public DbSet<Category>? Categories { get; set; }
         public DbSet<House>? Houses { get; set; }
         public DbSet<Flat>? Flats { get; set; }
+        public DbSet<Assign>? Assigns { get; set; }
+        public DbSet<Payment>? Payments { get; set; }
         public DbSet<Area>? Areas { get; set; }
         public DbSet<Division>? Divisions { get; set; }
         public DbSet<District>? Districts { get; set; }

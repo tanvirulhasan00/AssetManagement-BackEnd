@@ -13,5 +13,6 @@ namespace AssetManagement.Repositories.IRepos
         Task<T> GetAsync(GenericRequest<T> request);
         Task AddAsync(T entity);
         void Remove(T entity);
+        void RemoveRange(List<T> entity);
     }
 }

@@ -19,9 +19,9 @@ namespace AssetManagement.Models.Request.Dto
         public IFormFile? ImageUrl { get; set; }
         public IFormFile? NidImageUrl { get; set; }
         public long RenterId { get; set; }
-        [Required]
-        public int Active { get; set; }
-        public int IsEmergencyContact { get; set; }
+        public string Active { get; set; }
+        public string IsEmergencyContact { get; set; }
+        public DateTime UpdatedDate { get; set; }
 
     }
 }

@@ -14,14 +14,13 @@ namespace AssetManagement.Models.db
         public string? Name { get; set; }
         public int DistrictId { get; set; }
         [ForeignKey("DistrictId")]
-        public District? DistrictName { get; set; }
+        public District? District { get; set; }
         public int DivisionId { get; set; }
         [ForeignKey("DivisionId")]
-        public Division? DivisionName { get; set; }
+        public Division? Division { get; set; }
         public string? SubDistrict { get; set; }
         public string? Thana { get; set; }
         public string? Mouza { get; set; }
-        [Required]
         public int Active { get; set; }
 
         public DateTime CreatedDate { get; set; }

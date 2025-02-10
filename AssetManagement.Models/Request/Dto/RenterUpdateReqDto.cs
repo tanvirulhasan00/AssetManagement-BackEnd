@@ -19,6 +19,7 @@ namespace AssetManagement.Models.Request.Dto
         public string? Occupation { get; set; }
         public string? Religion { get; set; }
         public string? Education { get; set; }
+        [Required]
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
         [Required]
@@ -32,9 +33,7 @@ namespace AssetManagement.Models.Request.Dto
 
         public IFormFile? ImageUrl { get; set; }
         public IFormFile? NidImageUrl { get; set; }
-
-        [Required]
-        public int Active { get; set; }
+        public string? Active { get; set; }
 
         public DateTime UpdatedDate { get; set; }
     }

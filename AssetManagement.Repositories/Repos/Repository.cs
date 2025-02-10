@@ -71,5 +71,10 @@ namespace AssetManagement.Repositories.Repos
         {
             _dbSet.Remove(entity);
         }
+
+        public void RemoveRange(List<T> entity)
+        {
+            _dbSet.RemoveRange(entity);
+        }
     }
 }

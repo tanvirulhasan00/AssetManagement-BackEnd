@@ -156,6 +156,45 @@ namespace AssetManagement.Database.Migrations
                     b.ToTable("Areas");
                 });
 
+            modelBuilder.Entity("AssetManagement.Models.db.Assign", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("FlatId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("FlatPrice")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ReferenceNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("RenterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlatId");
+
+                    b.HasIndex("RenterId");
+
+                    b.ToTable("Assigns");
+                });
+
             modelBuilder.Entity("AssetManagement.Models.db.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -169,6 +208,9 @@ namespace AssetManagement.Database.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("Price")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -243,6 +285,7 @@ namespace AssetManagement.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NidNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Occupation")
@@ -278,6 +321,9 @@ namespace AssetManagement.Database.Migrations
                     b.Property<int>("Active")
                         .HasColumnType("int");
 
+                    b.Property<string>("AssignedId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -292,9 +338,6 @@ namespace AssetManagement.Database.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Price")
-                        .HasColumnType("bigint");
 
                     b.Property<int>("TotalRoom")
                         .HasColumnType("int");
@@ -378,6 +421,49 @@ namespace AssetManagement.Database.Migrations
                     b.HasIndex("AreaId");
 
                     b.ToTable("Houses");
+                });
+
+            modelBuilder.Entity("AssetManagement.Models.db.Payment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("InvoiceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaymentAmount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaymentDueAmount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("RenterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TransactionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RenterId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("AssetManagement.Models.db.Renter", b =>
@@ -598,62 +684,92 @@ namespace AssetManagement.Database.Migrations
 
             modelBuilder.Entity("AssetManagement.Models.db.Area", b =>
                 {
-                    b.HasOne("AssetManagement.Models.db.District", "DistrictName")
+                    b.HasOne("AssetManagement.Models.db.District", "District")
                         .WithMany()
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AssetManagement.Models.db.Division", "DivisionName")
+                    b.HasOne("AssetManagement.Models.db.Division", "Division")
                         .WithMany()
                         .HasForeignKey("DivisionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DistrictName");
+                    b.Navigation("District");
 
-                    b.Navigation("DivisionName");
+                    b.Navigation("Division");
                 });
 
-            modelBuilder.Entity("AssetManagement.Models.db.FamilyMember", b =>
+            modelBuilder.Entity("AssetManagement.Models.db.Assign", b =>
                 {
-                    b.HasOne("AssetManagement.Models.db.Renter", "RenterDetails")
+                    b.HasOne("AssetManagement.Models.db.Flat", "Flat")
+                        .WithMany()
+                        .HasForeignKey("FlatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AssetManagement.Models.db.Renter", "Renter")
                         .WithMany()
                         .HasForeignKey("RenterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("RenterDetails");
+                    b.Navigation("Flat");
+
+                    b.Navigation("Renter");
+                });
+
+            modelBuilder.Entity("AssetManagement.Models.db.FamilyMember", b =>
+                {
+                    b.HasOne("AssetManagement.Models.db.Renter", "Renter")
+                        .WithMany()
+                        .HasForeignKey("RenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Renter");
                 });
 
             modelBuilder.Entity("AssetManagement.Models.db.Flat", b =>
                 {
-                    b.HasOne("AssetManagement.Models.db.Category", "Categories")
+                    b.HasOne("AssetManagement.Models.db.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AssetManagement.Models.db.House", "HouseDetails")
+                    b.HasOne("AssetManagement.Models.db.House", "House")
                         .WithMany()
                         .HasForeignKey("HouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categories");
+                    b.Navigation("Category");
 
-                    b.Navigation("HouseDetails");
+                    b.Navigation("House");
                 });
 
             modelBuilder.Entity("AssetManagement.Models.db.House", b =>
                 {
-                    b.HasOne("AssetManagement.Models.db.Area", "AreaDetails")
+                    b.HasOne("AssetManagement.Models.db.Area", "Area")
                         .WithMany()
                         .HasForeignKey("AreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AreaDetails");
+                    b.Navigation("Area");
+                });
+
+            modelBuilder.Entity("AssetManagement.Models.db.Payment", b =>
+                {
+                    b.HasOne("AssetManagement.Models.db.Renter", "Renter")
+                        .WithMany()
+                        .HasForeignKey("RenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Renter");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

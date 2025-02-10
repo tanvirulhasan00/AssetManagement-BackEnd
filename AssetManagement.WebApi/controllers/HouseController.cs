@@ -22,7 +22,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetAllHouse(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -31,7 +31,7 @@ namespace AssetManagement.WebApi.controllers
                 var genericReq = new GenericRequest<House>()
                 {
                     Expression = null,
-                    IncludeProperties = null,
+                    IncludeProperties = "Area",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
@@ -70,7 +70,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> GetHouse(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -118,7 +118,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> CreateHouse([FromBody] HouseCreateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -127,12 +127,12 @@ namespace AssetManagement.WebApi.controllers
                 House houseToCreate = new()
                 {
                     Name = request.Name,
-                    AreaId = request.AreaId,
-                    TotalFloor = request.TotalFloor,
-                    TotalFlat = request.TotalFlat,
+                    AreaId = int.Parse(request.AreaId),
+                    TotalFloor = int.Parse(request.TotalFloor),
+                    TotalFlat = int.Parse(request.TotalFlat),
                     Road = request.Road,
-                    PostCode = request.PostCode,
-                    Active = request.Active,
+                    PostCode = int.Parse(request.PostCode),
+                    Active = int.Parse(request.Active),
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,
                 };
@@ -147,7 +147,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Create Successful";
                 return response;
 
             }
@@ -171,7 +171,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        // [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> UpdateHouse([FromBody] HouseUpdateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -193,12 +193,12 @@ namespace AssetManagement.WebApi.controllers
                     return response;
                 }
                 houseData.Name = (request.Name == null || request.Name == "") ? houseData.Name : request.Name;
-                houseData.AreaId = request.AreaId == 0 ? houseData.AreaId : request.AreaId;
-                houseData.TotalFloor = request.TotalFloor == 0 ? houseData.TotalFloor : request.TotalFloor;
-                houseData.TotalFlat = request.TotalFlat == 0 ? houseData.TotalFlat : request.TotalFlat;
+                houseData.AreaId = int.Parse(request.AreaId) == 0 ? houseData.AreaId : int.Parse(request.AreaId);
+                houseData.TotalFloor = int.Parse(request.TotalFloor) == 0 ? houseData.TotalFloor : int.Parse(request.TotalFloor);
+                houseData.TotalFlat = int.Parse(request.TotalFlat) == 0 ? houseData.TotalFlat : int.Parse(request.TotalFlat);
                 houseData.Road = (request.Road == null || request.Road == "") ? houseData.Road : request.Road;
-                houseData.PostCode = request.PostCode == 0 ? houseData.PostCode : request.PostCode;
-                houseData.Active = request.Active;
+                houseData.PostCode = int.Parse(request.PostCode) == 0 ? houseData.PostCode : int.Parse(request.PostCode);
+                houseData.Active = int.Parse(request.Active);
                 houseData.UpdatedDate = DateTime.UtcNow;
 
                 _unitOfWork.Houses?.Update(houseData);
@@ -212,7 +212,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Update Successful";
                 return response;
 
             }
@@ -236,47 +236,47 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin")]
-        public async Task<ApiResponse> DeleteHouse(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteHouse(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (Id == 0)
+            if (Ids == null || Ids.Count == 0)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - No IDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<House>
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => Ids.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var houseData = await _unitOfWork.Houses.GetAsync(genericReq);
-                if (houseData == null)
+                var houseToDelete = await _unitOfWork.Houses.GetAllAsync(genericReq);
+                if (houseToDelete == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - house data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - No house found with the provided IDs: {Ids}";
                     return response;
                 }
 
-                _unitOfWork.Houses.Remove(houseData);
+                _unitOfWork.Houses.RemoveRange(houseToDelete);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting house";
+                    response.Message = "Something went wrong while deleting house";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = $"{houseToDelete.Count} House(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)

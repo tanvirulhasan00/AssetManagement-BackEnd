@@ -21,14 +21,14 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllArea(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             var genericReq = new GenericRequest<Area>
             {
                 Expression = null,
-                IncludeProperties = null,
+                IncludeProperties = "District,Division",
                 NoTracking = true,
                 CancellationToken = cancellationToken
             };
@@ -68,14 +68,14 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetArea(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             var genericReq = new GenericRequest<Area>
             {
                 Expression = x => x.Id == Id,
-                IncludeProperties = null,
+                IncludeProperties = "District,Division",
                 NoTracking = true,
                 CancellationToken = cancellationToken
             };
@@ -115,7 +115,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateArea([FromBody] AreaCreateReqDto areaDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -123,7 +123,7 @@ namespace AssetManagement.WebApi.controllers
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - area name is empty";
                 return response;
             }
 
@@ -147,12 +147,14 @@ namespace AssetManagement.WebApi.controllers
                 Area areaToCreate = new()
                 {
                     Name = areaDto.Name,
-                    DistrictId = areaDto.DistrictId,
-                    DivisionId = areaDto.DivisionId,
+                    DistrictId = int.Parse(areaDto.DistrictId),
+                    DivisionId = int.Parse(areaDto.DivisionId),
                     SubDistrict = areaDto.SubDistrict,
                     Thana = areaDto.Thana,
                     Mouza = areaDto.Mouza,
-                    Active = areaDto.Active,
+                    Active = int.Parse(areaDto.Active),
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow,
                 };
                 await _unitOfWork.Areas.AddAsync(areaToCreate);
                 int res = await _unitOfWork.Save();
@@ -160,12 +162,12 @@ namespace AssetManagement.WebApi.controllers
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while creating area";
+                    response.Message = "Something went wrong while creating area";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Successful";
+                response.Message = "Create Successful";
                 return response;
 
             }
@@ -190,7 +192,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        // [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> UpdateArea([FromBody] AreaUpdateReqDto areaDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -219,12 +221,13 @@ namespace AssetManagement.WebApi.controllers
                     return response;
                 }
                 areaData.Name = (areaDto.Name == null || areaDto.Name == "") ? areaData.Name : areaDto.Name;
-                areaData.DistrictId = areaDto.DistrictId == 0 ? areaData.DistrictId : areaDto.DistrictId;
-                areaData.DivisionId = areaDto.DivisionId == 0 ? areaData.DivisionId : areaDto.DivisionId;
+                areaData.DistrictId = int.Parse(areaDto.DistrictId) == 0 ? areaData.DistrictId : int.Parse(areaDto.DistrictId);
+                areaData.DivisionId = int.Parse(areaDto.DivisionId) == 0 ? areaData.DivisionId : int.Parse(areaDto.DivisionId);
                 areaData.SubDistrict = (areaDto.SubDistrict == null || areaDto.SubDistrict == "") ? areaData.SubDistrict : areaDto.SubDistrict;
                 areaData.Thana = (areaDto.Thana == null || areaDto.Thana == "") ? areaData.Thana : areaDto.Thana;
                 areaData.Mouza = (areaDto.Mouza == null || areaDto.Mouza == "") ? areaData.Mouza : areaDto.Mouza;
-                areaData.Active = areaDto.Active;
+                areaData.Active = int.Parse(areaDto.Active);
+                areaData.UpdatedDate = DateTime.UtcNow;
 
                 _unitOfWork.Areas.Update(areaData);
                 int res = await _unitOfWork.Save();
@@ -237,7 +240,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = "Update Successful";
                 return response;
 
             }
@@ -262,47 +265,47 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        // [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> DeleteArea(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> DeleteArea(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            if (Id == 0)
+            if (Ids == null || Ids.Count == 0)
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful";
+                response.Message = "Unsuccessful - No IDs provided";
                 return response;
             }
             try
             {
                 var genericReq = new GenericRequest<Area>
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => Ids.Contains(x.Id.ToString()),
                     IncludeProperties = null,
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var areaData = await _unitOfWork.Areas.GetAsync(genericReq);
-                if (areaData == null)
+                var areasToDelete = await _unitOfWork.Areas.GetAllAsync(genericReq);
+                if (areasToDelete == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = $"Unsuccessful - area data not found with the id {Id}";
+                    response.Message = $"Unsuccessful - No areas found with the provided IDs: {Ids}";
                     return response;
                 }
 
-                _unitOfWork.Areas.Remove(areaData);
+                _unitOfWork.Areas.RemoveRange(areasToDelete);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something wrong while deleting area";
+                    response.Message = "Something went wrong while deleting areas";
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Successful";
+                response.Message = $"{areasToDelete.Count} Area(s) deleted Successfully";
                 return response;
             }
             catch (TaskCanceledException ex)
@@ -323,5 +326,6 @@ namespace AssetManagement.WebApi.controllers
 
             }
         }
+
     }
 }
