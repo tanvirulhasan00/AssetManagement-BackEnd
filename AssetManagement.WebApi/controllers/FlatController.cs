@@ -147,7 +147,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Create Successful";
+                response.Message = "Flat created successfully";
                 return response;
 
             }
@@ -210,7 +210,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Update Successful";
+                response.Message = "Flat updated successfully";
                 return response;
 
             }

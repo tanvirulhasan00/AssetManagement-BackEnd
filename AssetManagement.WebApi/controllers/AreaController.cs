@@ -167,7 +167,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
-                response.Message = "Create Successful";
+                response.Message = "Area created Successfully";
                 return response;
 
             }
@@ -240,7 +240,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Update Successful";
+                response.Message = "Area updated Successfully";
                 return response;
 
             }

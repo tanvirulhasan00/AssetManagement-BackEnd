@@ -141,7 +141,7 @@ namespace AssetManagement.WebApi.controllers
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful - userId is not valid";
+                response.Message = "Unsuccessful - userId is not provided";
                 return response;
             }
             try

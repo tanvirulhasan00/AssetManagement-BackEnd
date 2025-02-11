@@ -237,7 +237,7 @@ namespace AssetManagement.WebApi.controllers
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Update successful";
+                response.Message = "Assign data updated successfully";
                 return response;
 
             }

@@ -175,7 +175,7 @@ namespace AssetManagement.Repositories.Repos.Auth
 
                     response.Success = true;
                     response.StatusCode = HttpStatusCode.Created;
-                    response.Message = "User created.";
+                    response.Message = "User created successfully.";
                     //return response;
                 }
                 else
