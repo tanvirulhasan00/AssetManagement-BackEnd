@@ -170,6 +170,12 @@ namespace AssetManagement.Database.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("FlatAdvanceAmountDue")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlatAdvanceAmountGiven")
+                        .HasColumnType("int");
+
                     b.Property<long>("FlatId")
                         .HasColumnType("bigint");
 
@@ -330,6 +336,9 @@ namespace AssetManagement.Database.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("FlatAdvanceAmount")
+                        .HasColumnType("int");
+
                     b.Property<int>("FloorNo")
                         .HasColumnType("int");
 
@@ -338,6 +347,12 @@ namespace AssetManagement.Database.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PrevRentAdvanceAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PrevRentDuoAmount")
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalRoom")
                         .HasColumnType("int");

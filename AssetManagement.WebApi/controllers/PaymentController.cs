@@ -116,12 +116,14 @@ namespace AssetManagement.WebApi.controllers
         public async Task<ApiResponse> CreatePayment([FromBody] PaymentCreateReqDto paymentDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
+            var transId = GenerateInvOrTransNumber("TRANS");
+            var invoiceId = GenerateInvOrTransNumber("INV");
             try
             {
                 Payment paymentToCreate = new()
                 {
-                    TransactionId = (paymentDto.TransactionId != null && paymentDto.TransactionId != "") ? paymentDto.TransactionId : GenerateInvOrTransNumber("TRANS"),
-                    InvoiceId = GenerateInvOrTransNumber("INV"),
+                    TransactionId = (paymentDto.TransactionId != null && paymentDto.TransactionId != "") ? paymentDto.TransactionId : transId,
+                    InvoiceId = invoiceId,
                     PaymentMethod = paymentDto.PaymentMethod,
                     PaymentAmount = int.Parse(paymentDto.PaymentAmount),
                     PaymentDueAmount = int.Parse(paymentDto.PaymentDueAmount),
@@ -175,6 +177,71 @@ namespace AssetManagement.WebApi.controllers
         private static string GenerateInvOrTransNumber(string name)
         {
             return $"{name}-{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString()}";
+        }
+
+        [HttpPost]
+        [Route("pay-due")]
+        public async Task<ApiResponse> PayDue([FromBody] PaymentUpdateReqDto paymentDto, CancellationToken cancellationToken)
+        {
+            var response = new ApiResponse();
+
+            try
+            {
+                var payment = await _unitOfWork.Payment.GetAsync(new GenericRequest<Payment>
+                {
+                    Expression = x => x.Id == paymentDto.Id,
+                    IncludeProperties = null,
+                    NoTracking = true,
+                    CancellationToken = cancellationToken,
+                });
+                Payment paymentToUpdate = new()
+                {
+                    PaymentAmount = payment.PaymentAmount + int.Parse(paymentDto.PaymentDueAmount),
+                    PaymentDueAmount = payment.PaymentDueAmount - int.Parse(paymentDto.PaymentDueAmount),
+                    PaymentStatus = paymentDto.PaymentStatus,
+                    LastUpdatedDate = DateTime.UtcNow,
+                };
+                _unitOfWork.Payment.Update(paymentToUpdate);
+                int res = await _unitOfWork.Save();
+                if (res > 0)
+                {
+                    var user = await _unitOfWork.Users.GetAsync(new GenericRequest<ApplicationUser>
+                    {
+                        Expression = x => x.Id == paymentDto.UserId,
+                        IncludeProperties = null,
+                        NoTracking = true,
+                        CancellationToken = cancellationToken,
+                    });
+                    History historyToCreate = new()
+                    {
+                        ActionName = "Update Payment",
+                        ActionBy = user.Id,
+                        ActionByName = user.Name,
+                        ActionDate = DateTime.UtcNow,
+                    };
+                    await _unitOfWork.Histories.AddAsync(historyToCreate);
+                    await _unitOfWork.Save();
+
+                    response.Success = true;
+                    response.StatusCode = HttpStatusCode.Created;
+                    response.Message = "Payment created successfully";
+                    return response;
+                }
+                else
+                {
+                    response.Success = false;
+                    response.StatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Something went wrong while creating payment";
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = ex.Message;
+                return response;
+            }
         }
     }
 }

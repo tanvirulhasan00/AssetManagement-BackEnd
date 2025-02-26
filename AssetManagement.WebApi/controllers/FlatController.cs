@@ -130,6 +130,9 @@ namespace AssetManagement.WebApi.controllers
                     FloorNo = int.Parse(request.FloorNo),
                     TotalRoom = int.Parse(request.TotalRoom),
                     AssignedId = string.Empty,
+                    FlatAdvanceAmount = int.Parse(request.FlatAdvanceAmount),
+                    PrevRentDuoAmount = 0,
+                    PrevRentAdvanceAmount = 0,
                     CategoryId = int.Parse(request.CategoryId),
                     HouseId = int.Parse(request.HouseId),
                     Active = int.Parse(request.Active),
@@ -195,6 +198,7 @@ namespace AssetManagement.WebApi.controllers
                 flatData.Name = (request.Name == null || request.Name == "") ? flatData.Name : request.Name;
                 flatData.FloorNo = int.Parse(request.FloorNo) == 0 ? flatData.FloorNo : int.Parse(request.FloorNo);
                 flatData.TotalRoom = int.Parse(request.TotalRoom) == 0 ? flatData.TotalRoom : int.Parse(request.TotalRoom);
+                flatData.FlatAdvanceAmount = int.Parse(request.FlatAdvanceAmount) == 0 ? flatData.FlatAdvanceAmount : int.Parse(request.FlatAdvanceAmount);
                 flatData.CategoryId = int.Parse(request.CategoryId) == 0 ? flatData.CategoryId : int.Parse(request.CategoryId);
                 flatData.HouseId = int.Parse(request.HouseId) == 0 ? flatData.HouseId : int.Parse(request.HouseId);
                 flatData.Active = int.Parse(request.Active);

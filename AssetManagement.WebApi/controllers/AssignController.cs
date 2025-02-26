@@ -133,6 +133,8 @@ namespace AssetManagement.WebApi.controllers
                     RenterId = int.Parse(assignDto.RenterId),
                     FlatId = int.Parse(assignDto.FlatId),
                     FlatPrice = int.Parse(assignDto.FlatPrice),
+                    FlatAdvanceAmountGiven = int.Parse(assignDto.FlatAdvanceAmountGiven),
+                    FlatAdvanceAmountDue = int.Parse(assignDto.FlatAdvanceAmountDue),
                     Active = int.Parse(assignDto.Active),
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,

@@ -77,6 +77,10 @@
       "PackagePath": "staticwebassets/images/2fb77703-741a-407c-a4af-c04ce3ee01a4.jpg"
     },
     {
+      "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/341d4b45-a68d-40d5-8f40-56fa26ecaa1f.JPG",
+      "PackagePath": "staticwebassets/images/341d4b45-a68d-40d5-8f40-56fa26ecaa1f.JPG"
+    },
+    {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/34683213-a332-48bd-988e-5e107b0797c2.jpeg",
       "PackagePath": "staticwebassets/images/34683213-a332-48bd-988e-5e107b0797c2.jpeg"
     },
@@ -127,6 +131,10 @@
     {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/4ea8f4ae-48fa-481a-839c-56ccc40552c0",
       "PackagePath": "staticwebassets/images"
+    },
+    {
+      "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/4ec4968f-cda1-4eab-8ba3-90e584e3ddd4.JPG",
+      "PackagePath": "staticwebassets/images/4ec4968f-cda1-4eab-8ba3-90e584e3ddd4.JPG"
     },
     {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/4f1af296-b373-4e0f-9c63-5eef186c615e.jpg",
@@ -345,8 +353,16 @@
       "PackagePath": "staticwebassets/images/df60239f-e0d6-417b-8c49-1944158caeb2.JPG"
     },
     {
+      "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/e82404cf-7b31-4d9b-92d9-b24ff274afb4.JPG",
+      "PackagePath": "staticwebassets/images/e82404cf-7b31-4d9b-92d9-b24ff274afb4.JPG"
+    },
+    {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/f18e34dc-f427-4001-ba18-86ef031c6b25.jpg",
       "PackagePath": "staticwebassets/images/f18e34dc-f427-4001-ba18-86ef031c6b25.jpg"
+    },
+    {
+      "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/f23fa5c9-3441-4f3f-9b49-843532180ccb.JPG",
+      "PackagePath": "staticwebassets/images/f23fa5c9-3441-4f3f-9b49-843532180ccb.JPG"
     },
     {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/f5f8f4fd-c874-45d7-b52b-971450e98d84.JPG",

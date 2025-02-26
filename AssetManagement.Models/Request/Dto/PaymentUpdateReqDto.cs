@@ -10,7 +10,9 @@ namespace AssetManagement.Models.db
     public class PaymentUpdateReqDto
     {
         public long Id { get; set; }
-        public string PaymentDueAmount { get; set; }
+        public string? UserId { get; set; }
+        public string? PaymentDueAmount { get; set; }
         public DateTime LastUpdatedDate { get; set; }
+        public string? PaymentStatus { get; set; }
     }
 }

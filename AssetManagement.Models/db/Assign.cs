@@ -21,6 +21,8 @@ namespace AssetManagement.Models.db
         public Flat? Flat { get; set; }
 
         public long FlatPrice { get; set; }
+        public int FlatAdvanceAmountGiven { get; set; } = 0;
+        public int FlatAdvanceAmountDue { get; set; } = 0;
         public int Active { get; set; }
 
         public DateTime CreatedDate { get; set; }
