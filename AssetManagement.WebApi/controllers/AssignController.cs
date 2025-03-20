@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using AssetManagement.Models.db;
 using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Request.Generic;
@@ -71,22 +67,49 @@ namespace AssetManagement.WebApi.controllers
             }
         }
 
-        [HttpGet]
+
+        [HttpPost]
         [Route("get")]
-        [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> GetAssign(long Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin")]
+        public async Task<ApiResponse> GetAssign(GetAssignReqDto req, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
-            var genericReq = new GenericRequest<Assign>
+            var genericReqWithPId = new GenericRequest<Assign>
             {
-                Expression = x => x.Id == Id,
+                Expression = x => x.Id == req.AssignId,
+                IncludeProperties = "Renter,Flat",
+                NoTracking = true,
+                CancellationToken = cancellationToken
+            };
+            var genericReqWithRId = new GenericRequest<Assign>
+            {
+                Expression = x => x.RenterId == req.RenterId,
+                IncludeProperties = "Renter,Flat",
+                NoTracking = true,
+                CancellationToken = cancellationToken
+            };
+            var genericReqWithRefId = new GenericRequest<Assign>
+            {
+                Expression = x => x.ReferenceNo == req.ReferenceNo,
                 IncludeProperties = "Renter,Flat",
                 NoTracking = true,
                 CancellationToken = cancellationToken
             };
             try
             {
-                var assign = await _unitOfWork.Assign.GetAsync(genericReq);
+                Assign assign = new();
+                if (req.AssignId != 0 && req.AssignId != null)
+                {
+                    assign = await _unitOfWork.Assign.GetAsync(genericReqWithPId);
+                }
+                if (req.RenterId != 0 && req.RenterId != null)
+                {
+                    assign = await _unitOfWork.Assign.GetAsync(genericReqWithRId);
+                }
+                if (req.ReferenceNo != null && req.ReferenceNo != "")
+                {
+                    assign = await _unitOfWork.Assign.GetAsync(genericReqWithRefId);
+                }
                 if (assign == null)
                 {
                     response.Success = false;
@@ -120,7 +143,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = "admin")]
         public async Task<ApiResponse> CreateAssign([FromBody] AssignCreateReqDto assignDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -132,12 +155,12 @@ namespace AssetManagement.WebApi.controllers
                     ReferenceNo = reference,
                     RenterId = int.Parse(assignDto.RenterId),
                     FlatId = int.Parse(assignDto.FlatId),
-                    FlatPrice = int.Parse(assignDto.FlatPrice),
-                    FlatAdvanceAmountGiven = int.Parse(assignDto.FlatAdvanceAmountGiven),
-                    FlatAdvanceAmountDue = int.Parse(assignDto.FlatAdvanceAmountDue),
-                    Active = int.Parse(assignDto.Active),
+                    FlatRent = int.Parse(assignDto.FlatRent),
+                    DueRent = 0,
+                    AdvanceRent = 0,
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,
+                    Active = int.Parse(assignDto.Active),
                 };
                 await _unitOfWork.Assign.AddAsync(assignToCreate);
                 int res = await _unitOfWork.Save();
@@ -156,12 +179,30 @@ namespace AssetManagement.WebApi.controllers
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
+                var genericReqForStatus = new GenericRequest<Assign>
+                {
+                    Expression = x => x.ReferenceNo == reference,
+                    IncludeProperties = null,
+                    NoTracking = true,
+                    CancellationToken = cancellationToken
+                };
+                DateTime now = DateTime.Now;
+                int year = now.Year;
 
                 var flat = await _unitOfWork.Flats.GetAsync(genericReq);
+                var assign = await _unitOfWork.Assign.GetAsync(genericReqForStatus);
                 flat.AssignedId = reference;
                 _unitOfWork.Flats.Update(flat);
-                await _unitOfWork.Save();
 
+                MonthlyPaymentStatus monthlyPaymentStatusToCreate = new()
+                {
+                    AssignId = assign.Id,
+                    Year = year.ToString(),
+
+                };
+                await _unitOfWork.MonthlyPaymentStatus.AddAsync(monthlyPaymentStatusToCreate);
+
+                await _unitOfWork.Save();
 
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
@@ -202,7 +243,7 @@ namespace AssetManagement.WebApi.controllers
             {
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = "Unsuccessful - id is not valid";
+                response.Message = "Unsuccessful - Assign id is not valid";
                 return response;
             }
             try
@@ -224,9 +265,9 @@ namespace AssetManagement.WebApi.controllers
                 }
                 assignData.RenterId = int.Parse(assignDto.RenterId) == 0 ? assignData.RenterId : int.Parse(assignDto.RenterId);
                 assignData.FlatId = int.Parse(assignDto.FlatId) == 0 ? assignData.FlatId : int.Parse(assignDto.FlatId);
-                assignData.FlatPrice = int.Parse(assignDto.FlatPrice) == 0 ? assignData.FlatPrice : int.Parse(assignDto.FlatPrice);
-                assignData.Active = int.Parse(assignDto.Active);
+                assignData.FlatRent = int.Parse(assignDto.FlatPrice) == 0 ? assignData.FlatRent : int.Parse(assignDto.FlatPrice);
                 assignData.UpdatedDate = DateTime.UtcNow;
+                assignData.Active = int.Parse(assignDto.Active);
 
                 _unitOfWork.Assign.Update(assignData);
                 int res = await _unitOfWork.Save();
@@ -293,6 +334,20 @@ namespace AssetManagement.WebApi.controllers
                     return response;
                 }
 
+                var paymentsData = await _unitOfWork.Payment.GetAllAsync(new GenericRequest<Payment>
+                {
+                    Expression = x => Ids.Contains(x.AssignId.ToString()),
+                    IncludeProperties = null,
+                    NoTracking = true,
+                    CancellationToken = cancellationToken
+                });
+                foreach (var payment in paymentsData)
+                {
+                    payment.AssignId = null; // Manually set FK to NULL
+                }
+                await _unitOfWork.Save(); // Save changes before deleting the Assign
+
+
                 _unitOfWork.Assign.RemoveRange(assignToDelete);
                 int res = await _unitOfWork.Save();
                 if (res == 0)
@@ -301,6 +356,19 @@ namespace AssetManagement.WebApi.controllers
                     response.StatusCode = HttpStatusCode.InternalServerError;
                     response.Message = "Something went wrong while deleting assign";
                     return response;
+                }
+                foreach (var item in assignToDelete)
+                {
+                    var flatAssignId = await _unitOfWork.Flats.GetAsync(new GenericRequest<Flat>
+                    {
+                        Expression = x => x.Id == item.FlatId,
+                        IncludeProperties = null,
+                        NoTracking = true,
+                        CancellationToken = cancellationToken
+                    });
+                    flatAssignId.AssignedId = string.Empty;
+                    _unitOfWork.Flats.Update(flatAssignId);
+                    await _unitOfWork.Save();
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
@@ -327,5 +395,70 @@ namespace AssetManagement.WebApi.controllers
         }
 
 
+        [HttpPost]
+        [Route("make-inactive")]
+        [Authorize(Roles = "admin,manager")]
+        public async Task<ApiResponse> MakeInActive(List<string> Ids, CancellationToken cancellationToken)
+        {
+            var response = new ApiResponse();
+            if (Ids == null || Ids.Count == 0)
+            {
+                response.Success = false;
+                response.StatusCode = HttpStatusCode.BadRequest;
+                response.Message = "Unsuccessful - No IDs provided";
+                return response;
+            }
+            try
+            {
+                var assignDataToInactive = await _unitOfWork.Assign.GetAllAsync(new GenericRequest<Assign>
+                {
+                    Expression = x => Ids.Contains(x.Id.ToString()),
+                    IncludeProperties = null,
+                    NoTracking = false,
+                    CancellationToken = cancellationToken
+                });
+                if (assignDataToInactive.Count == 0)
+                {
+                    response.Success = false;
+                    response.StatusCode = HttpStatusCode.NotFound;
+                    response.Message = "Unsuccessful - No data found";
+                    return response;
+                }
+                foreach (var item in assignDataToInactive)
+                {
+                    item.Active = 0;
+                }
+                int res = await _unitOfWork.Save();
+                if (res == 0)
+                {
+                    response.Success = false;
+                    response.StatusCode = HttpStatusCode.InternalServerError;
+                    response.Message = "Unsuccessful - Some error happened while saving changes to db";
+                    return response;
+                }
+                response.Success = true;
+                response.StatusCode = HttpStatusCode.OK;
+                response.Message = "Successfully inactived assign data";
+                return response;
+
+            }
+            catch (TaskCanceledException ex)
+            {
+                response.Success = false;
+                response.StatusCode = HttpStatusCode.RequestTimeout;
+                response.Message = ex.Message;
+                response.Error = ex;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = ex.Message;
+                response.Error = ex.GetType().Name;
+                return response;
+
+            }
+        }
     }
 }

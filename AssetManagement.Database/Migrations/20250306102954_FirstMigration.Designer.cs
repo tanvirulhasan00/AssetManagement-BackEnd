@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssetManagement.Database.Migrations
 {
     [DbContext(typeof(AssetManagementDbContext))]
-    [Migration("20250208011003_AddRefFieldAndChangetype")]
-    partial class AddRefFieldAndChangetype
+    [Migration("20250306102954_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,16 +170,22 @@ namespace AssetManagement.Database.Migrations
                     b.Property<int>("Active")
                         .HasColumnType("int");
 
+                    b.Property<long>("AdvanceRent")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<long>("DueRent")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("FlatId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("FlatPrice")
+                    b.Property<long>("FlatRent")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("ReferecneNo")
+                    b.Property<string>("ReferenceNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -333,6 +339,9 @@ namespace AssetManagement.Database.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("FlatAdvance")
+                        .HasColumnType("int");
+
                     b.Property<int>("FloorNo")
                         .HasColumnType("int");
 
@@ -365,7 +374,7 @@ namespace AssetManagement.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ActionBy")
+                    b.Property<string>("ActionById")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -374,6 +383,9 @@ namespace AssetManagement.Database.Migrations
 
                     b.Property<DateTime>("ActionDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ActionDetails")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ActionName")
                         .IsRequired()
@@ -424,6 +436,65 @@ namespace AssetManagement.Database.Migrations
                     b.HasIndex("AreaId");
 
                     b.ToTable("Houses");
+                });
+
+            modelBuilder.Entity("AssetManagement.Models.db.Payment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AssignId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("FlatUtilities")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InvoiceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentAdvance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentAmount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaymentDue")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMonth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentYear")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReferenceNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssignId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("AssetManagement.Models.db.Renter", b =>
@@ -719,6 +790,17 @@ namespace AssetManagement.Database.Migrations
                         .IsRequired();
 
                     b.Navigation("Area");
+                });
+
+            modelBuilder.Entity("AssetManagement.Models.db.Payment", b =>
+                {
+                    b.HasOne("AssetManagement.Models.db.Assign", "Assign")
+                        .WithMany()
+                        .HasForeignKey("AssignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Assign");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

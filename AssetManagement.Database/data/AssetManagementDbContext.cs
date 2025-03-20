@@ -22,10 +22,17 @@ namespace AssetManagement.Database.data
         public DbSet<Area>? Areas { get; set; }
         public DbSet<Division>? Divisions { get; set; }
         public DbSet<District>? Districts { get; set; }
+        public DbSet<MonthlyPaymentStatus>? MonthlyPaymentStatuses { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Assign>()
+            .HasMany(a => a.Payments)
+            .WithOne(p => p.Assign)
+            .HasForeignKey(p => p.AssignId)
+            .OnDelete(DeleteBehavior.SetNull); // This allows AssignId to be set to NULL when Assign is deleted
         }
     }
 }

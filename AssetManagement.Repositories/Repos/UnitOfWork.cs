@@ -37,6 +37,8 @@ using AssetManagement.Repositories.IRepos.IAssignRepo;
 using AssetManagement.Repositories.Repos.AssignRepo;
 using AssetManagement.Repositories.IRepos.IPaymentRepo;
 using AssetManagement.Repositories.Repos.PaymentRepo;
+using AssetManagement.Repositories.IRepos.IMonthlyPaymentStatusRepo;
+using AssetManagement.Repositories.Repos.MonthlyPaymentStatusRepo;
 
 namespace AssetManagement.Repositories.Repos
 {
@@ -56,6 +58,7 @@ namespace AssetManagement.Repositories.Repos
         public IHistoryRepositoy Histories { get; private set; }
         public IAssignRepository Assign { get; private set; }
         public IPaymentRepository Payment { get; private set; }
+        public IMonthlyPaymentStatusRepository MonthlyPaymentStatus { get; private set; }
         private readonly AssetManagementDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -85,6 +88,7 @@ namespace AssetManagement.Repositories.Repos
             Histories = new HistoryRepository(_context);
             Assign = new AssignRepository(_context);
             Payment = new PaymentRepository(_context);
+            MonthlyPaymentStatus = new MonthlyPaymentStatusRepository(_context);
         }
         public async Task<int> Save()
         {

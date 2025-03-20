@@ -104,6 +104,12 @@ builder.Services.AddVersionedApiExplorer(options =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+// builder.Services.AddControllers()
+//     .AddJsonOptions(options =>
+//     {
+//         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+//     });
+
 // Add services to the container.
 builder.Services.AddCors(options =>
 {

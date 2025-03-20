@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YRy6+wIR7NbCKIpKHp66RYXqzPLzXPwDoPKyRdS0iYw=",
+  "Hash": "ZzvrbVYYBxQU257abTQy26H1NlMxLcR8o5X7cxWfCS0=",
   "Source": "AssetManagement.WebApi",
   "BasePath": "_content/AssetManagement.WebApi",
   "Mode": "Default",
@@ -267,6 +267,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/1703574f-a177-4e72-aefa-98ebbdf792b6.jpg"
+    },
+    {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/1a4062d5-5231-4a8f-83da-9f76e1bd8762.jpg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/1a4062d5-5231-4a8f-83da-9f76e1bd8762#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3ybh8l7ct2",
+      "Integrity": "Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/1a4062d5-5231-4a8f-83da-9f76e1bd8762.jpg"
     },
     {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/1acb3561-d855-40a9-9710-a754512d741b.jpeg",
@@ -752,6 +773,27 @@
       "OriginalItemSpec": "wwwroot/images/4f1af296-b373-4e0f-9c63-5eef186c615e.jpg"
     },
     {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/4fb20374-93bf-4ad4-a03c-eaf90473bac1.jpg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/4fb20374-93bf-4ad4-a03c-eaf90473bac1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "izsx088due",
+      "Integrity": "/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/4fb20374-93bf-4ad4-a03c-eaf90473bac1.jpg"
+    },
+    {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/5341742d-dac0-45f0-bf93-4e737f7b75d4.jpg",
       "SourceId": "AssetManagement.WebApi",
       "SourceType": "Discovered",
@@ -1065,6 +1107,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/7cbaa8fd-5c4f-4c9a-b88a-69c584993c69.jpg"
+    },
+    {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/84837085-ca34-468c-a551-854cde453a5e.jpeg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/84837085-ca34-468c-a551-854cde453a5e#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "krnak2x20p",
+      "Integrity": "MP2QMJH9CJ76D0rNj3gB3HpzBSAH+0qx1FsCFO0Q8kw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/84837085-ca34-468c-a551-854cde453a5e.jpeg"
     },
     {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/86e260a2-e51e-4745-9402-e97841255dc8.jpeg",
@@ -1403,6 +1466,27 @@
       "OriginalItemSpec": "wwwroot/images/a68d15b2-39b7-424a-8ea9-77d326466ec8.jpeg"
     },
     {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/a8e12030-9a9a-49f8-8742-5b170b842d86.jpg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/a8e12030-9a9a-49f8-8742-5b170b842d86#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3ybh8l7ct2",
+      "Integrity": "Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/a8e12030-9a9a-49f8-8742-5b170b842d86.jpg"
+    },
+    {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/aae1654c-50b9-4cf8-adca-ba98a8f81838.jpg",
       "SourceId": "AssetManagement.WebApi",
       "SourceType": "Discovered",
@@ -1508,6 +1592,27 @@
       "OriginalItemSpec": "wwwroot/images/b8d2af93-f5a1-4d60-ac8a-853ae1fd84d8.jpg"
     },
     {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d.jpg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "izsx088due",
+      "Integrity": "/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d.jpg"
+    },
+    {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/bcf1ccf6-36bf-493f-834d-a9d1462f3958.JPG",
       "SourceId": "AssetManagement.WebApi",
       "SourceType": "Discovered",
@@ -1527,6 +1632,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/bcf1ccf6-36bf-493f-834d-a9d1462f3958.JPG"
+    },
+    {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/c08228d4-c7f6-49cc-884c-299f271149fd.jpg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/c08228d4-c7f6-49cc-884c-299f271149fd#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "izsx088due",
+      "Integrity": "/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/c08228d4-c7f6-49cc-884c-299f271149fd.jpg"
     },
     {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/c337b7b6-ce99-462c-8c67-48e1547ab086.jpg",
@@ -1823,6 +1949,27 @@
       "OriginalItemSpec": "wwwroot/images/da617fc0-990a-4d9f-8a50-5030fe5ffb50.jpg"
     },
     {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/df0fe029-ea55-4f64-8256-1a69eb44c22d.jpg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/df0fe029-ea55-4f64-8256-1a69eb44c22d#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "izsx088due",
+      "Integrity": "/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/df0fe029-ea55-4f64-8256-1a69eb44c22d.jpg"
+    },
+    {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/df10ecb9-643d-4f03-a568-4732f7d081c7.jpg",
       "SourceId": "AssetManagement.WebApi",
       "SourceType": "Discovered",
@@ -1863,6 +2010,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/df60239f-e0d6-417b-8c49-1944158caeb2.JPG"
+    },
+    {
+      "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4.jpg",
+      "SourceId": "AssetManagement.WebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/",
+      "BasePath": "_content/AssetManagement.WebApi",
+      "RelativePath": "images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "izsx088due",
+      "Integrity": "/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4.jpg"
     },
     {
       "Identity": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/e82404cf-7b31-4d9b-92d9-b24ff274afb4.JPG",
@@ -2994,6 +3162,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
+      "Route": "images/1a4062d5-5231-4a8f-83da-9f76e1bd8762.3ybh8l7ct2.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/1a4062d5-5231-4a8f-83da-9f76e1bd8762.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "150834"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 15:32:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3ybh8l7ct2"
+        },
+        {
+          "Name": "label",
+          "Value": "images/1a4062d5-5231-4a8f-83da-9f76e1bd8762.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY="
+        }
+      ]
+    },
+    {
+      "Route": "images/1a4062d5-5231-4a8f-83da-9f76e1bd8762.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/1a4062d5-5231-4a8f-83da-9f76e1bd8762.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "150834"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 15:32:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY="
         }
       ]
     },
@@ -4884,6 +5134,88 @@
       ]
     },
     {
+      "Route": "images/4fb20374-93bf-4ad4-a03c-eaf90473bac1.izsx088due.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/4fb20374-93bf-4ad4-a03c-eaf90473bac1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 05:44:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "izsx088due"
+        },
+        {
+          "Name": "label",
+          "Value": "images/4fb20374-93bf-4ad4-a03c-eaf90473bac1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
+      "Route": "images/4fb20374-93bf-4ad4-a03c-eaf90473bac1.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/4fb20374-93bf-4ad4-a03c-eaf90473bac1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 05:44:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
       "Route": "images/5341742d-dac0-45f0-bf93-4e737f7b75d4.izsx088due.jpg",
       "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/5341742d-dac0-45f0-bf93-4e737f7b75d4.jpg",
       "Selectors": [],
@@ -6110,6 +6442,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
+      "Route": "images/84837085-ca34-468c-a551-854cde453a5e.jpeg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/84837085-ca34-468c-a551-854cde453a5e.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "103918"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MP2QMJH9CJ76D0rNj3gB3HpzBSAH+0qx1FsCFO0Q8kw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 10:35:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MP2QMJH9CJ76D0rNj3gB3HpzBSAH+0qx1FsCFO0Q8kw="
+        }
+      ]
+    },
+    {
+      "Route": "images/84837085-ca34-468c-a551-854cde453a5e.krnak2x20p.jpeg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/84837085-ca34-468c-a551-854cde453a5e.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "103918"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MP2QMJH9CJ76D0rNj3gB3HpzBSAH+0qx1FsCFO0Q8kw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 10:35:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "krnak2x20p"
+        },
+        {
+          "Name": "label",
+          "Value": "images/84837085-ca34-468c-a551-854cde453a5e.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MP2QMJH9CJ76D0rNj3gB3HpzBSAH+0qx1FsCFO0Q8kw="
         }
       ]
     },
@@ -7426,6 +7840,88 @@
       ]
     },
     {
+      "Route": "images/a8e12030-9a9a-49f8-8742-5b170b842d86.3ybh8l7ct2.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/a8e12030-9a9a-49f8-8742-5b170b842d86.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "150834"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 15:32:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3ybh8l7ct2"
+        },
+        {
+          "Name": "label",
+          "Value": "images/a8e12030-9a9a-49f8-8742-5b170b842d86.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY="
+        }
+      ]
+    },
+    {
+      "Route": "images/a8e12030-9a9a-49f8-8742-5b170b842d86.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/a8e12030-9a9a-49f8-8742-5b170b842d86.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "150834"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 15:32:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rb390aGh3mm0cuuZL+ZFcxiz7bynhYylahNxRAePEuY="
+        }
+      ]
+    },
+    {
       "Route": "images/aae1654c-50b9-4cf8-adca-ba98a8f81838.izsx088due.jpg",
       "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/aae1654c-50b9-4cf8-adca-ba98a8f81838.jpg",
       "Selectors": [],
@@ -7836,6 +8332,88 @@
       ]
     },
     {
+      "Route": "images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d.izsx088due.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 05:44:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "izsx088due"
+        },
+        {
+          "Name": "label",
+          "Value": "images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
+      "Route": "images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/ba66dc12-d4f8-4bf3-8e6a-cb53678b432d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 05:44:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
       "Route": "images/bcf1ccf6-36bf-493f-834d-a9d1462f3958.JPG",
       "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/bcf1ccf6-36bf-493f-834d-a9d1462f3958.JPG",
       "Selectors": [],
@@ -7914,6 +8492,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI="
+        }
+      ]
+    },
+    {
+      "Route": "images/c08228d4-c7f6-49cc-884c-299f271149fd.izsx088due.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/c08228d4-c7f6-49cc-884c-299f271149fd.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 06:19:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "izsx088due"
+        },
+        {
+          "Name": "label",
+          "Value": "images/c08228d4-c7f6-49cc-884c-299f271149fd.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
+      "Route": "images/c08228d4-c7f6-49cc-884c-299f271149fd.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/c08228d4-c7f6-49cc-884c-299f271149fd.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 06:19:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
         }
       ]
     },
@@ -9066,6 +9726,88 @@
       ]
     },
     {
+      "Route": "images/df0fe029-ea55-4f64-8256-1a69eb44c22d.izsx088due.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/df0fe029-ea55-4f64-8256-1a69eb44c22d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 10:35:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "izsx088due"
+        },
+        {
+          "Name": "label",
+          "Value": "images/df0fe029-ea55-4f64-8256-1a69eb44c22d.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
+      "Route": "images/df0fe029-ea55-4f64-8256-1a69eb44c22d.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/df0fe029-ea55-4f64-8256-1a69eb44c22d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 10:35:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
       "Route": "images/df10ecb9-643d-4f03-a568-4732f7d081c7.izsx088due.jpg",
       "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/df10ecb9-643d-4f03-a568-4732f7d081c7.jpg",
       "Selectors": [],
@@ -9226,6 +9968,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-5tVfegxS1TbS4Hvui6Qd1Rp1Uu9LrYqyF+bRID70rzI="
+        }
+      ]
+    },
+    {
+      "Route": "images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4.izsx088due.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 06:19:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "izsx088due"
+        },
+        {
+          "Name": "label",
+          "Value": "images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
+        }
+      ]
+    },
+    {
+      "Route": "images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4.jpg",
+      "AssetFile": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/e50f2a87-4806-4fec-afb1-e7cd282ef2b4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 06:19:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vDUJNq73rFcSI5ggO2djWFAggrpLk842f9Hvlqso4c="
         }
       ]
     },

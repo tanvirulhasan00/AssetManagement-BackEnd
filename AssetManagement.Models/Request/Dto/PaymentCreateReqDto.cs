@@ -11,14 +11,19 @@ namespace AssetManagement.Models.db
     {
         public string? TransactionId { get; set; }
         public string? UserId { get; set; }
+        public string? InvoiceId { get; set; }
         public string? PaymentMethod { get; set; }
-        public string? PaymentAmount { get; set; }
-        public string? PaymentDueAmount { get; set; }
+        public string PaymentType { get; set; }
+        public string PaymentAmount { get; set; }
+        public string FlatUtilities { get; set; }
+        public string PaymentDue { get; set; }
+        public string PaymentAdvance { get; set; }
+        public string? PaymentMonth { get; set; }
+        public string? PaymentYear { get; set; }
         public DateTime PaymentDate { get; set; }
-        public DateTime LastUpdatedDate { get; set; }
         public string? PaymentStatus { get; set; }
-        [Required]
-        public string RenterId { get; set; }
+        public string ReferenceNo { get; set; }
+        public long AssignId { get; set; }
 
     }
 }

@@ -23,7 +23,7 @@ namespace AssetManagement.Models.db
         public int Active { get; set; }
         public int IsEmergencyContact { get; set; }
 
-        public long RenterId { get; set; }
+        public long? RenterId { get; set; }
         [ForeignKey("RenterId")]
         public Renter? Renter { get; set; }
 

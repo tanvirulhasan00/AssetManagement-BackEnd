@@ -12,11 +12,10 @@ namespace AssetManagement.Models.Request.Dto
         public string? Name { get; set; }
         public string FloorNo { get; set; }
         public string TotalRoom { get; set; }
-        public string FlatAdvanceAmount { get; set; }
-        public string Active { get; set; }
+        public string FlatAdvance { get; set; }
         public string CategoryId { get; set; }
-        public string HouseId { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public string Active { get; set; }
 
     }
 }

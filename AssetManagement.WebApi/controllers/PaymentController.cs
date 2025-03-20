@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace AssetManagement.WebApi.controllers
                 var payment = await _unitOfWork.Payment.GetAllAsync(new GenericRequest<Payment>
                 {
                     Expression = null,
-                    IncludeProperties = "Renter",
+                    IncludeProperties = "",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 });
@@ -78,7 +79,7 @@ namespace AssetManagement.WebApi.controllers
                 var payment = await _unitOfWork.Payment.GetAsync(new GenericRequest<Payment>
                 {
                     Expression = x => x.Id == id,
-                    IncludeProperties = "Renter",
+                    IncludeProperties = "Assign",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 });
@@ -120,18 +121,81 @@ namespace AssetManagement.WebApi.controllers
             var invoiceId = GenerateInvOrTransNumber("INV");
             try
             {
+                if (paymentDto.ReferenceNo == null)
+                {
+                    response.Success = false;
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.Message = "Reference number is not provided";
+                    return response;
+                }
                 Payment paymentToCreate = new()
                 {
                     TransactionId = (paymentDto.TransactionId != null && paymentDto.TransactionId != "") ? paymentDto.TransactionId : transId,
                     InvoiceId = invoiceId,
                     PaymentMethod = paymentDto.PaymentMethod,
+                    PaymentType = paymentDto.PaymentType,
                     PaymentAmount = int.Parse(paymentDto.PaymentAmount),
-                    PaymentDueAmount = int.Parse(paymentDto.PaymentDueAmount),
+                    FlatUtilities = int.Parse(paymentDto.FlatUtilities),
+                    PaymentDue = int.Parse(paymentDto.PaymentDue),
+                    PaymentAdvance = int.Parse(paymentDto.PaymentAdvance),
+                    PaymentMonth = paymentDto.PaymentMonth,
+                    PaymentYear = paymentDto.PaymentYear,
                     PaymentStatus = paymentDto.PaymentStatus,
                     PaymentDate = DateTime.UtcNow,
-                    LastUpdatedDate = DateTime.UtcNow,
-                    RenterId = int.Parse(paymentDto.RenterId),
+                    ReferenceNo = paymentDto.ReferenceNo,
+                    AssignId = paymentDto.AssignId,
                 };
+                if ((paymentDto.PaymentDue != null && paymentDto.PaymentDue != "") || (paymentDto.PaymentAdvance != null && paymentDto.PaymentAdvance != ""))
+                {
+                    var assignData = await _unitOfWork.Assign.GetAsync(new GenericRequest<Assign>
+                    {
+                        Expression = x => x.ReferenceNo == paymentDto.ReferenceNo,
+                        NoTracking = true,
+                        IncludeProperties = null,
+                        CancellationToken = cancellationToken
+                    });
+                    var now = DateTime.UtcNow;
+                    var year = now.Year;
+
+                    assignData.DueRent += int.Parse(paymentDto.PaymentDue);
+                    assignData.AdvanceRent += int.Parse(paymentDto.PaymentAdvance);
+                    if (paymentDto.PaymentType == "duerent")
+                    {
+                        assignData.DueRent -= int.Parse(paymentDto.PaymentAmount);
+                    }
+                    _unitOfWork.Assign.Update(assignData);
+
+                    // dynamic paymentStatusToUpdate = new ExpandoObject();
+                    var paymentStatusToUpdate = await _unitOfWork.MonthlyPaymentStatus.GetAsync(new GenericRequest<MonthlyPaymentStatus>
+                    {
+                        Expression = x => x.AssignId == assignData.Id && x.Year == year.ToString(),
+                        NoTracking = true,
+                        IncludeProperties = null,
+                        CancellationToken = cancellationToken
+                    });
+
+
+
+
+                    var propertyName = paymentDto.PaymentMonth;
+                    var property = paymentStatusToUpdate.GetType().GetProperty(propertyName);
+
+                    if (property != null && property.CanWrite)
+                    {
+                        property.SetValue(paymentStatusToUpdate, paymentDto.PaymentStatus);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Property '{propertyName}' not found or is not writable.");
+                    }
+
+                    // Now update it in the database
+                    _unitOfWork.MonthlyPaymentStatus.Update(paymentStatusToUpdate);
+
+
+                    await _unitOfWork.Save();
+                }
+
                 await _unitOfWork.Payment.AddAsync(paymentToCreate);
                 int res = await _unitOfWork.Save();
                 if (res > 0)
@@ -145,17 +209,18 @@ namespace AssetManagement.WebApi.controllers
                     });
                     History historyToCreate = new()
                     {
-                        ActionName = "Create Payment",
-                        ActionBy = user.Id,
+                        ActionName = paymentDto.PaymentType,
+                        ActionById = user.Id,
                         ActionByName = user.Name,
                         ActionDate = DateTime.UtcNow,
+                        ActionDetails = (paymentDto.TransactionId != null && paymentDto.TransactionId != "") ? paymentDto.TransactionId : transId,
                     };
                     await _unitOfWork.Histories.AddAsync(historyToCreate);
                     await _unitOfWork.Save();
 
                     response.Success = true;
                     response.StatusCode = HttpStatusCode.Created;
-                    response.Message = "Payment created successfully";
+                    response.Message = "Payment successful";
                     return response;
                 }
                 else
@@ -177,71 +242,6 @@ namespace AssetManagement.WebApi.controllers
         private static string GenerateInvOrTransNumber(string name)
         {
             return $"{name}-{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString()}";
-        }
-
-        [HttpPost]
-        [Route("pay-due")]
-        public async Task<ApiResponse> PayDue([FromBody] PaymentUpdateReqDto paymentDto, CancellationToken cancellationToken)
-        {
-            var response = new ApiResponse();
-
-            try
-            {
-                var payment = await _unitOfWork.Payment.GetAsync(new GenericRequest<Payment>
-                {
-                    Expression = x => x.Id == paymentDto.Id,
-                    IncludeProperties = null,
-                    NoTracking = true,
-                    CancellationToken = cancellationToken,
-                });
-                Payment paymentToUpdate = new()
-                {
-                    PaymentAmount = payment.PaymentAmount + int.Parse(paymentDto.PaymentDueAmount),
-                    PaymentDueAmount = payment.PaymentDueAmount - int.Parse(paymentDto.PaymentDueAmount),
-                    PaymentStatus = paymentDto.PaymentStatus,
-                    LastUpdatedDate = DateTime.UtcNow,
-                };
-                _unitOfWork.Payment.Update(paymentToUpdate);
-                int res = await _unitOfWork.Save();
-                if (res > 0)
-                {
-                    var user = await _unitOfWork.Users.GetAsync(new GenericRequest<ApplicationUser>
-                    {
-                        Expression = x => x.Id == paymentDto.UserId,
-                        IncludeProperties = null,
-                        NoTracking = true,
-                        CancellationToken = cancellationToken,
-                    });
-                    History historyToCreate = new()
-                    {
-                        ActionName = "Update Payment",
-                        ActionBy = user.Id,
-                        ActionByName = user.Name,
-                        ActionDate = DateTime.UtcNow,
-                    };
-                    await _unitOfWork.Histories.AddAsync(historyToCreate);
-                    await _unitOfWork.Save();
-
-                    response.Success = true;
-                    response.StatusCode = HttpStatusCode.Created;
-                    response.Message = "Payment created successfully";
-                    return response;
-                }
-                else
-                {
-                    response.Success = false;
-                    response.StatusCode = HttpStatusCode.InternalServerError;
-                    response.Message = "Something went wrong while creating payment";
-                    return response;
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Success = false;
-                response.StatusCode = HttpStatusCode.InternalServerError;
-                response.Message = ex.Message;
-                return response;
-            }
         }
     }
 }

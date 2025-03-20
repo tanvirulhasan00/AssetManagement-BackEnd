@@ -165,7 +165,8 @@ namespace AssetManagement.Repositories.Repos.Auth
                 var result = await _userManager.CreateAsync(user, request.Password);
                 if (result.Succeeded)
                 {
-                    // //var ff =_roleManager.FindByNameAsync("admin");
+
+                    //var ff =_roleManager.FindByNameAsync("admin");
                     // if (!_roleManager.RoleExistsAsync("admin").GetAwaiter().GetResult())
                     // {
                     //     await _roleManager.CreateAsync(new IdentityRole("admin"));

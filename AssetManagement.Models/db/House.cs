@@ -12,7 +12,7 @@ namespace AssetManagement.Models.db
         [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
-        public int AreaId { get; set; }
+        public int? AreaId { get; set; }
         [ForeignKey("AreaId")]
         public Area? Area { get; set; }
         public int TotalFloor { get; set; }

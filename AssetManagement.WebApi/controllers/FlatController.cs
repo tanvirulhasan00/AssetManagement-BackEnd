@@ -22,7 +22,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> GetAllFlat(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -70,8 +70,8 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "admin")]
-        public async Task<ApiResponse> GetFlat(int Id, CancellationToken cancellationToken)
+        [Authorize(Roles = "admin,manager")]
+        public async Task<ApiResponse> GetFlat(long Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             try
@@ -118,7 +118,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,manager")]
         public async Task<ApiResponse> CreateFlat([FromBody] FlatCreateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -130,14 +130,12 @@ namespace AssetManagement.WebApi.controllers
                     FloorNo = int.Parse(request.FloorNo),
                     TotalRoom = int.Parse(request.TotalRoom),
                     AssignedId = string.Empty,
-                    FlatAdvanceAmount = int.Parse(request.FlatAdvanceAmount),
-                    PrevRentDuoAmount = 0,
-                    PrevRentAdvanceAmount = 0,
+                    FlatAdvance = int.Parse(request.FlatAdvance),
                     CategoryId = int.Parse(request.CategoryId),
                     HouseId = int.Parse(request.HouseId),
-                    Active = int.Parse(request.Active),
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,
+                    Active = int.Parse(request.Active),
                 };
                 _unitOfWork.Flats?.AddAsync(flatToCreate);
                 var result = await _unitOfWork.Save();
@@ -196,11 +194,11 @@ namespace AssetManagement.WebApi.controllers
                     return response;
                 }
                 flatData.Name = (request.Name == null || request.Name == "") ? flatData.Name : request.Name;
-                flatData.FloorNo = int.Parse(request.FloorNo) == 0 ? flatData.FloorNo : int.Parse(request.FloorNo);
+                // flatData.FloorNo = int.Parse(request.FloorNo) == 0 ? flatData.FloorNo : int.Parse(request.FloorNo);
                 flatData.TotalRoom = int.Parse(request.TotalRoom) == 0 ? flatData.TotalRoom : int.Parse(request.TotalRoom);
-                flatData.FlatAdvanceAmount = int.Parse(request.FlatAdvanceAmount) == 0 ? flatData.FlatAdvanceAmount : int.Parse(request.FlatAdvanceAmount);
+                flatData.FlatAdvance = int.Parse(request.FlatAdvance) == 0 ? flatData.FlatAdvance : int.Parse(request.FlatAdvance);
                 flatData.CategoryId = int.Parse(request.CategoryId) == 0 ? flatData.CategoryId : int.Parse(request.CategoryId);
-                flatData.HouseId = int.Parse(request.HouseId) == 0 ? flatData.HouseId : int.Parse(request.HouseId);
+                flatData.UpdatedDate = DateTime.UtcNow;
                 flatData.Active = int.Parse(request.Active);
 
                 _unitOfWork.Flats?.Update(flatData);
@@ -264,6 +262,14 @@ namespace AssetManagement.WebApi.controllers
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
                     response.Message = $"Unsuccessful - No flat found with the provided IDs: {Ids}";
+                    return response;
+                }
+                var assignId = flatToDelete.Select(x => x.AssignedId);
+                if (assignId != null)
+                {
+                    response.Success = false;
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.Message = $"Unsuccessful - flat already assigned";
                     return response;
                 }
 

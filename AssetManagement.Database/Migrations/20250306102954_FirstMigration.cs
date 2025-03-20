@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AssetManagement.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigrationToDb : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,8 +32,12 @@ namespace AssetManagement.Database.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NidNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProfilePicUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NidPicUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,7 +64,9 @@ namespace AssetManagement.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<long>(type: "bigint", nullable: true),
+                    Active = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,7 +79,8 @@ namespace AssetManagement.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,11 +93,29 @@ namespace AssetManagement.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Divisions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Histories",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ActionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActionById = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActionByName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ActionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActionDetails = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Histories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,22 +135,18 @@ namespace AssetManagement.Database.Migrations
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NidNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NidNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SpouseName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SpouseNidNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SpousePhnNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SpouseAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DriverName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DriverNidNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DriverPhnNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DriverAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PrevRoomOwnerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PrevRoomOwnerNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PrevRoomOwnerAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReasonToLeavePrevHome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    NidImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -249,7 +270,10 @@ namespace AssetManagement.Database.Migrations
                     DivisionId = table.Column<int>(type: "int", nullable: false),
                     SubDistrict = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Thana = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Mouza = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Mouza = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -269,38 +293,24 @@ namespace AssetManagement.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmergencyContacts",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Relation = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RenterId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmergencyContacts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EmergencyContacts_Renters_RenterId",
-                        column: x => x.RenterId,
-                        principalTable: "Renters",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "FamilyMembers",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NidNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Relation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RenterId = table.Column<long>(type: "bigint", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NidImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    IsEmergencyContact = table.Column<int>(type: "int", nullable: false),
+                    RenterId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -324,7 +334,10 @@ namespace AssetManagement.Database.Migrations
                     TotalFloor = table.Column<int>(type: "int", nullable: false),
                     TotalFlat = table.Column<int>(type: "int", nullable: false),
                     Road = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostCode = table.Column<long>(type: "bigint", nullable: false)
+                    PostCode = table.Column<long>(type: "bigint", nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -346,9 +359,13 @@ namespace AssetManagement.Database.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FloorNo = table.Column<int>(type: "int", nullable: false),
                     TotalRoom = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<long>(type: "bigint", nullable: false),
+                    AssignedId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FlatAdvance = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    HouseId = table.Column<int>(type: "int", nullable: false)
+                    HouseId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -363,6 +380,71 @@ namespace AssetManagement.Database.Migrations
                         name: "FK_Flats_Houses_HouseId",
                         column: x => x.HouseId,
                         principalTable: "Houses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Assigns",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReferenceNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RenterId = table.Column<long>(type: "bigint", nullable: false),
+                    FlatId = table.Column<long>(type: "bigint", nullable: false),
+                    FlatRent = table.Column<long>(type: "bigint", nullable: false),
+                    DueRent = table.Column<long>(type: "bigint", nullable: false),
+                    AdvanceRent = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Assigns", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Assigns_Flats_FlatId",
+                        column: x => x.FlatId,
+                        principalTable: "Flats",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Assigns_Renters_RenterId",
+                        column: x => x.RenterId,
+                        principalTable: "Renters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TransactionId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InvoiceId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentAmount = table.Column<int>(type: "int", nullable: false),
+                    FlatUtilities = table.Column<int>(type: "int", nullable: false),
+                    PaymentDue = table.Column<int>(type: "int", nullable: false),
+                    PaymentAdvance = table.Column<int>(type: "int", nullable: false),
+                    PaymentMonth = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentYear = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReferenceNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AssignId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payments_Assigns_AssignId",
+                        column: x => x.AssignId,
+                        principalTable: "Assigns",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -417,8 +499,13 @@ namespace AssetManagement.Database.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmergencyContacts_RenterId",
-                table: "EmergencyContacts",
+                name: "IX_Assigns_FlatId",
+                table: "Assigns",
+                column: "FlatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Assigns_RenterId",
+                table: "Assigns",
                 column: "RenterId");
 
             migrationBuilder.CreateIndex(
@@ -440,6 +527,11 @@ namespace AssetManagement.Database.Migrations
                 name: "IX_Houses_AreaId",
                 table: "Houses",
                 column: "AreaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_AssignId",
+                table: "Payments",
+                column: "AssignId");
         }
 
         /// <inheritdoc />
@@ -461,19 +553,25 @@ namespace AssetManagement.Database.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EmergencyContacts");
-
-            migrationBuilder.DropTable(
                 name: "FamilyMembers");
 
             migrationBuilder.DropTable(
-                name: "Flats");
+                name: "Histories");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Assigns");
+
+            migrationBuilder.DropTable(
+                name: "Flats");
 
             migrationBuilder.DropTable(
                 name: "Renters");

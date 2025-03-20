@@ -16,6 +16,7 @@ using AssetManagement.Repositories.IRepos.IImageUpload;
 using AssetManagement.Repositories.IRepos.IHistoryRepo;
 using AssetManagement.Repositories.IRepos.IAssignRepo;
 using AssetManagement.Repositories.IRepos.IPaymentRepo;
+using AssetManagement.Repositories.IRepos.IMonthlyPaymentStatusRepo;
 
 namespace AssetManagement.Repositories.IRepos
 {
@@ -35,6 +36,7 @@ namespace AssetManagement.Repositories.IRepos
         public IHistoryRepositoy Histories { get; }
         public IAssignRepository Assign { get; }
         public IPaymentRepository Payment { get; }
+        public IMonthlyPaymentStatusRepository MonthlyPaymentStatus { get; }
         Task<int> Save();
     }
 }
