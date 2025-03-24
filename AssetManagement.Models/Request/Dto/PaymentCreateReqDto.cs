@@ -13,11 +13,11 @@ namespace AssetManagement.Models.db
         public string? UserId { get; set; }
         public string? InvoiceId { get; set; }
         public string? PaymentMethod { get; set; }
-        public string PaymentType { get; set; }
-        public string PaymentAmount { get; set; }
-        public string FlatUtilities { get; set; }
-        public string PaymentDue { get; set; }
-        public string PaymentAdvance { get; set; }
+        public string? PaymentType { get; set; }
+        public string? PaymentAmount { get; set; }
+        public string? FlatUtilities { get; set; }
+        public string? PaymentDue { get; set; }
+        public string? PaymentAdvance { get; set; }
         public string? PaymentMonth { get; set; }
         public string? PaymentYear { get; set; }
         public DateTime PaymentDate { get; set; }

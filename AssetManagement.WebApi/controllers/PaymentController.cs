@@ -8,6 +8,7 @@ using AssetManagement.Models.db;
 using AssetManagement.Models.Request.Generic;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Repositories.IRepos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssetManagement.WebApi.controllers
@@ -150,33 +151,32 @@ namespace AssetManagement.WebApi.controllers
                     var assignData = await _unitOfWork.Assign.GetAsync(new GenericRequest<Assign>
                     {
                         Expression = x => x.ReferenceNo == paymentDto.ReferenceNo,
-                        NoTracking = true,
+                        NoTracking = false,
                         IncludeProperties = null,
                         CancellationToken = cancellationToken
                     });
-                    var now = DateTime.UtcNow;
-                    var year = now.Year;
 
-                    assignData.DueRent += int.Parse(paymentDto.PaymentDue);
-                    assignData.AdvanceRent += int.Parse(paymentDto.PaymentAdvance);
                     if (paymentDto.PaymentType == "duerent")
                     {
                         assignData.DueRent -= int.Parse(paymentDto.PaymentAmount);
                     }
-                    _unitOfWork.Assign.Update(assignData);
+                    assignData.DueRent += int.Parse(paymentDto.PaymentDue);
+                    if (assignData.AdvanceRent > 0)
+                    {
+                        var amountWithAdv = int.Parse(paymentDto.PaymentAmount) + assignData.AdvanceRent;
+                        var leftAmount = assignData.FlatRent - amountWithAdv;
+                        assignData.AdvanceRent = Math.Abs(leftAmount);
+                    }
 
-                    // dynamic paymentStatusToUpdate = new ExpandoObject();
+                    await _unitOfWork.Save();
+
                     var paymentStatusToUpdate = await _unitOfWork.MonthlyPaymentStatus.GetAsync(new GenericRequest<MonthlyPaymentStatus>
                     {
-                        Expression = x => x.AssignId == assignData.Id && x.Year == year.ToString(),
-                        NoTracking = true,
+                        Expression = x => x.AssignId == assignData.Id && x.Year == paymentDto.PaymentYear,
+                        NoTracking = false,
                         IncludeProperties = null,
                         CancellationToken = cancellationToken
                     });
-
-
-
-
                     var propertyName = paymentDto.PaymentMonth;
                     var property = paymentStatusToUpdate.GetType().GetProperty(propertyName);
 
@@ -188,11 +188,6 @@ namespace AssetManagement.WebApi.controllers
                     {
                         Console.WriteLine($"Property '{propertyName}' not found or is not writable.");
                     }
-
-                    // Now update it in the database
-                    _unitOfWork.MonthlyPaymentStatus.Update(paymentStatusToUpdate);
-
-
                     await _unitOfWork.Save();
                 }
 
@@ -243,5 +238,6 @@ namespace AssetManagement.WebApi.controllers
         {
             return $"{name}-{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString()}";
         }
+
     }
 }

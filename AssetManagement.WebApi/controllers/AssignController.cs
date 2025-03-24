@@ -41,6 +41,7 @@ namespace AssetManagement.WebApi.controllers
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
                     response.Message = "Data not found";
+                    response.Result = assign;
                     return response;
                 }
                 response.Success = true;
@@ -74,6 +75,7 @@ namespace AssetManagement.WebApi.controllers
         public async Task<ApiResponse> GetAssign(GetAssignReqDto req, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
+
             var genericReqWithPId = new GenericRequest<Assign>
             {
                 Expression = x => x.Id == req.AssignId,
@@ -95,6 +97,13 @@ namespace AssetManagement.WebApi.controllers
                 NoTracking = true,
                 CancellationToken = cancellationToken
             };
+            var genericReqWithFlatId = new GenericRequest<Assign>
+            {
+                Expression = x => x.FlatId == req.FlatId,
+                IncludeProperties = "Renter,Flat",
+                NoTracking = true,
+                CancellationToken = cancellationToken
+            };
             try
             {
                 Assign assign = new();
@@ -105,21 +114,27 @@ namespace AssetManagement.WebApi.controllers
                 if (req.RenterId != 0 && req.RenterId != null)
                 {
                     assign = await _unitOfWork.Assign.GetAsync(genericReqWithRId);
+                    Console.WriteLine("");
                 }
                 if (req.ReferenceNo != null && req.ReferenceNo != "")
                 {
                     assign = await _unitOfWork.Assign.GetAsync(genericReqWithRefId);
+                }
+                if (req.FlatId != 0 && req.FlatId != null)
+                {
+                    assign = await _unitOfWork.Assign.GetAsync(genericReqWithFlatId);
                 }
                 if (assign == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
                     response.Message = "Data not found";
+                    response.Result = assign;
                     return response;
                 }
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.OK;
-                response.Message = "Sucessful";
+                response.Message = "Successful";
                 response.Result = assign;
                 return response;
             }
@@ -136,7 +151,7 @@ namespace AssetManagement.WebApi.controllers
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = ex.Message;
-                response.Error = ex;
+                response.Error = ex.GetType().Name;
                 return response;
             }
         }

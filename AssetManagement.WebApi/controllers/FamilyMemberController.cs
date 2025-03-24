@@ -20,27 +20,51 @@ namespace AssetManagement.WebApi.controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("getall")]
         [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> GetAllFamilyMember(CancellationToken cancellationToken)
+        public async Task<ApiResponse> GetAllFamilyMember(FamilyMemberGrtReqDto? req, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             try
             {
-                var genericReq = new GenericRequest<FamilyMember>()
+                var familyMemberData = new List<FamilyMember>();
+                if (req == null)
                 {
-                    Expression = null,
-                    IncludeProperties = "Renter",
-                    NoTracking = true,
-                    CancellationToken = cancellationToken
-                };
-                var familyMemberData = await _unitOfWork.FamilyMembers.GetAllAsync(genericReq);
-                if (familyMemberData == null)
+                    familyMemberData = await _unitOfWork.FamilyMembers.GetAllAsync(new GenericRequest<FamilyMember>()
+                    {
+                        Expression = null,
+                        IncludeProperties = "Renter",
+                        NoTracking = true,
+                        CancellationToken = cancellationToken
+                    });
+                }
+                if (req?.FamilyMemberId > 0)
+                {
+                    familyMemberData = await _unitOfWork.FamilyMembers.GetAllAsync(new GenericRequest<FamilyMember>()
+                    {
+                        Expression = x => x.Id == req.FamilyMemberId,
+                        IncludeProperties = "Renter",
+                        NoTracking = true,
+                        CancellationToken = cancellationToken
+                    });
+                }
+                if (req?.RenterId > 0)
+                {
+                    familyMemberData = await _unitOfWork.FamilyMembers.GetAllAsync(new GenericRequest<FamilyMember>()
+                    {
+                        Expression = x => x.RenterId == req.RenterId,
+                        IncludeProperties = "Renter",
+                        NoTracking = true,
+                        CancellationToken = cancellationToken
+                    });
+                }
+                if (familyMemberData.Count == 0)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = "Unsuccessful";
+                    response.Message = "No Data";
+                    response.Result = familyMemberData;
                     return response;
                 }
                 response.Success = true;
@@ -63,7 +87,7 @@ namespace AssetManagement.WebApi.controllers
                 response.Success = false;
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = ex.Message;
-                response.Error = ex;
+                response.Error = ex.GetType().Name;
                 return response;
             }
         }
@@ -71,24 +95,39 @@ namespace AssetManagement.WebApi.controllers
         [HttpGet]
         [Route("get")]
         [Authorize(Roles = "admin,manager")]
-        public async Task<ApiResponse> GetFamilyMember(int Id, CancellationToken cancellationToken)
+        public async Task<ApiResponse> GetFamilyMember(FamilyMemberGrtReqDto req, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
             try
             {
-                var genericReq = new GenericRequest<FamilyMember>()
+                var genericReqForFId = new GenericRequest<FamilyMember>()
                 {
-                    Expression = x => x.Id == Id,
+                    Expression = x => x.Id == req.FamilyMemberId,
                     IncludeProperties = "Renter",
                     NoTracking = true,
                     CancellationToken = cancellationToken
                 };
-                var familyMemberData = await _unitOfWork.FamilyMembers.GetAsync(genericReq);
+                var genericReqForRenterId = new GenericRequest<FamilyMember>()
+                {
+                    Expression = x => x.RenterId == req.RenterId,
+                    IncludeProperties = "Renter",
+                    NoTracking = true,
+                    CancellationToken = cancellationToken
+                };
+                var familyMemberData = new FamilyMember();
+                if (req.FamilyMemberId != 0 && req.FamilyMemberId != null)
+                {
+                    familyMemberData = await _unitOfWork.FamilyMembers.GetAsync(genericReqForFId);
+                }
+                if (req.RenterId != 0 && req.RenterId != null)
+                {
+                    familyMemberData = await _unitOfWork.FamilyMembers.GetAsync(genericReqForRenterId);
+                }
                 if (familyMemberData == null)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
-                    response.Message = "Unsuccessful";
+                    response.Message = "No Data";
                     return response;
                 }
                 response.Success = true;

@@ -10,5 +10,6 @@ namespace AssetManagement.Models.Request.Dto
         public long? AssignId { get; set; }
         public string? ReferenceNo { get; set; }
         public long? RenterId { get; set; }
+        public long? FlatId { get; set; }
     }
 }

@@ -47,6 +47,7 @@ namespace AssetManagement.WebApi.controllers
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.NotFound;
                     response.Message = "User not found";
+                    response.Result = users;
                     return response;
                 }
                 var userRes = users.Select(s => new UserDto
@@ -57,6 +58,7 @@ namespace AssetManagement.WebApi.controllers
                     Address = s.Address,
                     PhoneNumber = s.PhoneNumber,
                     NidNumber = s.NidNumber,
+                    ProfilePicUrl = s.ProfilePicUrl,
                     Email = s.Email,
                     Active = s.Active,
                 });

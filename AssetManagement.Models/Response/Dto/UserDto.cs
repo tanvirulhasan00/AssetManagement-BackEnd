@@ -13,6 +13,7 @@ namespace AssetManagement.Models.Response.Dto
         public string? Address { get; set; }
         public string? PhoneNumber { get; set; }
         public string? NidNumber { get; set; }
+        public string? ProfilePicUrl { get; set; }
         public string? Email { get; set; }
         public int Active { get; set; }
     }
