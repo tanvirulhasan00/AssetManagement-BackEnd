@@ -22,10 +22,12 @@ namespace AssetManagement.Repositories.Repos.ImageUploadRepo
         {
             // Get the root path of wwwroot
             var rootPath = _env.WebRootPath;
+            var uri = new Uri(imageUrl);
+            var relativePath = uri.AbsolutePath.TrimStart('/');
             // Delete old NID picture if it exists
             if (!string.IsNullOrEmpty(imageUrl))
             {
-                var filePath = Path.Combine(rootPath, imageUrl.TrimStart('/'));
+                var filePath = Path.Combine(rootPath, relativePath);
                 if (File.Exists(filePath))
                 {
                     File.Delete(filePath);
