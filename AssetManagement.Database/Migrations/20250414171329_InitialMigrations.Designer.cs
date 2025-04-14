@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssetManagement.Database.Migrations
 {
     [DbContext(typeof(AssetManagementDbContext))]
-    [Migration("20250306102954_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20250414171329_InitialMigrations")]
+    partial class InitialMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,10 +129,10 @@ namespace AssetManagement.Database.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DistrictId")
+                    b.Property<int?>("DistrictId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DivisionId")
+                    b.Property<int?>("DivisionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Mouza")
@@ -179,7 +179,7 @@ namespace AssetManagement.Database.Migrations
                     b.Property<long>("DueRent")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("FlatId")
+                    b.Property<long?>("FlatId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("FlatRent")
@@ -189,7 +189,7 @@ namespace AssetManagement.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("RenterId")
+                    b.Property<long?>("RenterId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -306,7 +306,7 @@ namespace AssetManagement.Database.Migrations
                     b.Property<string>("Relation")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("RenterId")
+                    b.Property<long?>("RenterId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -333,7 +333,7 @@ namespace AssetManagement.Database.Migrations
                     b.Property<string>("AssignedId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -345,7 +345,7 @@ namespace AssetManagement.Database.Migrations
                     b.Property<int>("FloorNo")
                         .HasColumnType("int");
 
-                    b.Property<int>("HouseId")
+                    b.Property<int?>("HouseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -407,7 +407,7 @@ namespace AssetManagement.Database.Migrations
                     b.Property<int>("Active")
                         .HasColumnType("int");
 
-                    b.Property<int>("AreaId")
+                    b.Property<int?>("AreaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -438,6 +438,64 @@ namespace AssetManagement.Database.Migrations
                     b.ToTable("Houses");
                 });
 
+            modelBuilder.Entity("AssetManagement.Models.db.MonthlyPaymentStatus", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("April")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("AssignId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("August")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("December")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("February")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("January")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("July")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("June")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("March")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("May")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("November")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("October")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("September")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssignId");
+
+                    b.ToTable("MonthlyPaymentStatuses");
+                });
+
             modelBuilder.Entity("AssetManagement.Models.db.Payment", b =>
                 {
                     b.Property<long>("Id")
@@ -446,7 +504,7 @@ namespace AssetManagement.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AssignId")
+                    b.Property<long?>("AssignId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("FlatUtilities")
@@ -717,15 +775,11 @@ namespace AssetManagement.Database.Migrations
                 {
                     b.HasOne("AssetManagement.Models.db.District", "District")
                         .WithMany()
-                        .HasForeignKey("DistrictId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DistrictId");
 
                     b.HasOne("AssetManagement.Models.db.Division", "Division")
                         .WithMany()
-                        .HasForeignKey("DivisionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DivisionId");
 
                     b.Navigation("District");
 
@@ -736,15 +790,11 @@ namespace AssetManagement.Database.Migrations
                 {
                     b.HasOne("AssetManagement.Models.db.Flat", "Flat")
                         .WithMany()
-                        .HasForeignKey("FlatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FlatId");
 
                     b.HasOne("AssetManagement.Models.db.Renter", "Renter")
                         .WithMany()
-                        .HasForeignKey("RenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RenterId");
 
                     b.Navigation("Flat");
 
@@ -755,9 +805,7 @@ namespace AssetManagement.Database.Migrations
                 {
                     b.HasOne("AssetManagement.Models.db.Renter", "Renter")
                         .WithMany()
-                        .HasForeignKey("RenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RenterId");
 
                     b.Navigation("Renter");
                 });
@@ -766,15 +814,11 @@ namespace AssetManagement.Database.Migrations
                 {
                     b.HasOne("AssetManagement.Models.db.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("AssetManagement.Models.db.House", "House")
                         .WithMany()
-                        .HasForeignKey("HouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HouseId");
 
                     b.Navigation("Category");
 
@@ -785,20 +829,26 @@ namespace AssetManagement.Database.Migrations
                 {
                     b.HasOne("AssetManagement.Models.db.Area", "Area")
                         .WithMany()
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AreaId");
 
                     b.Navigation("Area");
+                });
+
+            modelBuilder.Entity("AssetManagement.Models.db.MonthlyPaymentStatus", b =>
+                {
+                    b.HasOne("AssetManagement.Models.db.Assign", "Assign")
+                        .WithMany()
+                        .HasForeignKey("AssignId");
+
+                    b.Navigation("Assign");
                 });
 
             modelBuilder.Entity("AssetManagement.Models.db.Payment", b =>
                 {
                     b.HasOne("AssetManagement.Models.db.Assign", "Assign")
-                        .WithMany()
+                        .WithMany("Payments")
                         .HasForeignKey("AssignId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Assign");
                 });
@@ -852,6 +902,11 @@ namespace AssetManagement.Database.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AssetManagement.Models.db.Assign", b =>
+                {
+                    b.Navigation("Payments");
                 });
 #pragma warning restore 612, 618
         }

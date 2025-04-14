@@ -225,6 +225,10 @@
       "PackagePath": "staticwebassets/images/8323c7a3-d1d2-4473-ba5f-119f0c0dea22.JPG"
     },
     {
+      "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/8450025a-b88f-42bc-9941-243989729a07.jpeg",
+      "PackagePath": "staticwebassets/images/8450025a-b88f-42bc-9941-243989729a07.jpeg"
+    },
+    {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/84837085-ca34-468c-a551-854cde453a5e.jpeg",
       "PackagePath": "staticwebassets/images/84837085-ca34-468c-a551-854cde453a5e.jpeg"
     },
@@ -359,6 +363,10 @@
     {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/c8d5c78a-fd01-4e16-b5e7-a9ae963e7234.jpeg",
       "PackagePath": "staticwebassets/images/c8d5c78a-fd01-4e16-b5e7-a9ae963e7234.jpeg"
+    },
+    {
+      "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/cc0461b3-9c5e-45cc-9f40-46d9c3d847b9.jpeg",
+      "PackagePath": "staticwebassets/images/cc0461b3-9c5e-45cc-9f40-46d9c3d847b9.jpeg"
     },
     {
       "Id": "/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/wwwroot/images/cc6bd680-fd4f-4323-a5cc-42b2d092a80d.jpg",

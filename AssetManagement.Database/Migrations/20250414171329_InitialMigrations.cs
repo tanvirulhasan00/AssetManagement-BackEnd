@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AssetManagement.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class InitialMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -266,8 +266,8 @@ namespace AssetManagement.Database.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DistrictId = table.Column<int>(type: "int", nullable: false),
-                    DivisionId = table.Column<int>(type: "int", nullable: false),
+                    DistrictId = table.Column<int>(type: "int", nullable: true),
+                    DivisionId = table.Column<int>(type: "int", nullable: true),
                     SubDistrict = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Thana = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Mouza = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -282,14 +282,12 @@ namespace AssetManagement.Database.Migrations
                         name: "FK_Areas_Districts_DistrictId",
                         column: x => x.DistrictId,
                         principalTable: "Districts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Areas_Divisions_DivisionId",
                         column: x => x.DivisionId,
                         principalTable: "Divisions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -308,7 +306,7 @@ namespace AssetManagement.Database.Migrations
                     NidImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Active = table.Column<int>(type: "int", nullable: false),
                     IsEmergencyContact = table.Column<int>(type: "int", nullable: false),
-                    RenterId = table.Column<long>(type: "bigint", nullable: false),
+                    RenterId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -319,8 +317,7 @@ namespace AssetManagement.Database.Migrations
                         name: "FK_FamilyMembers_Renters_RenterId",
                         column: x => x.RenterId,
                         principalTable: "Renters",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -330,7 +327,7 @@ namespace AssetManagement.Database.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AreaId = table.Column<int>(type: "int", nullable: false),
+                    AreaId = table.Column<int>(type: "int", nullable: true),
                     TotalFloor = table.Column<int>(type: "int", nullable: false),
                     TotalFlat = table.Column<int>(type: "int", nullable: false),
                     Road = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -346,8 +343,7 @@ namespace AssetManagement.Database.Migrations
                         name: "FK_Houses_Areas_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Areas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -361,8 +357,8 @@ namespace AssetManagement.Database.Migrations
                     TotalRoom = table.Column<int>(type: "int", nullable: false),
                     AssignedId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FlatAdvance = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    HouseId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    HouseId = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<int>(type: "int", nullable: false)
@@ -374,14 +370,12 @@ namespace AssetManagement.Database.Migrations
                         name: "FK_Flats_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Flats_Houses_HouseId",
                         column: x => x.HouseId,
                         principalTable: "Houses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -391,8 +385,8 @@ namespace AssetManagement.Database.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReferenceNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RenterId = table.Column<long>(type: "bigint", nullable: false),
-                    FlatId = table.Column<long>(type: "bigint", nullable: false),
+                    RenterId = table.Column<long>(type: "bigint", nullable: true),
+                    FlatId = table.Column<long>(type: "bigint", nullable: true),
                     FlatRent = table.Column<long>(type: "bigint", nullable: false),
                     DueRent = table.Column<long>(type: "bigint", nullable: false),
                     AdvanceRent = table.Column<long>(type: "bigint", nullable: false),
@@ -407,14 +401,43 @@ namespace AssetManagement.Database.Migrations
                         name: "FK_Assigns_Flats_FlatId",
                         column: x => x.FlatId,
                         principalTable: "Flats",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Assigns_Renters_RenterId",
                         column: x => x.RenterId,
                         principalTable: "Renters",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MonthlyPaymentStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AssignId = table.Column<long>(type: "bigint", nullable: true),
+                    January = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    February = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    March = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    April = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    May = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    June = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    July = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    August = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    September = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    October = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    November = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    December = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Year = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MonthlyPaymentStatuses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MonthlyPaymentStatuses_Assigns_AssignId",
+                        column: x => x.AssignId,
+                        principalTable: "Assigns",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -436,7 +459,7 @@ namespace AssetManagement.Database.Migrations
                     PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReferenceNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AssignId = table.Column<long>(type: "bigint", nullable: false)
+                    AssignId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -446,7 +469,7 @@ namespace AssetManagement.Database.Migrations
                         column: x => x.AssignId,
                         principalTable: "Assigns",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
@@ -529,6 +552,11 @@ namespace AssetManagement.Database.Migrations
                 column: "AreaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MonthlyPaymentStatuses_AssignId",
+                table: "MonthlyPaymentStatuses",
+                column: "AssignId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Payments_AssignId",
                 table: "Payments",
                 column: "AssignId");
@@ -557,6 +585,9 @@ namespace AssetManagement.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Histories");
+
+            migrationBuilder.DropTable(
+                name: "MonthlyPaymentStatuses");
 
             migrationBuilder.DropTable(
                 name: "Payments");

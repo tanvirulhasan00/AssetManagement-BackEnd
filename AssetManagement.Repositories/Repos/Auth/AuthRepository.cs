@@ -153,8 +153,8 @@ namespace AssetManagement.Repositories.Repos.Auth
                 Email = request.Email,
                 Address = request.Address,
                 NidNumber = request.NidNumber,
-                ProfilePicUrl = profilePicUrl,
-                NidPicUrl = nidPicUrl,
+                ProfilePicUrl = request.ProfilePicUrl != null ? profilePicUrl : null,
+                NidPicUrl = request.NidPicUrl != null ? nidPicUrl : null,
                 Active = int.Parse(request.Active),
                 CreatedDate = DateTime.UtcNow,
                 UpdatedDate = DateTime.UtcNow,
@@ -232,43 +232,5 @@ namespace AssetManagement.Repositories.Repos.Auth
             }
 
         }
-
-        // public async Task<ApiResponse> UpdateUserInfo(UserInfoUpdateReqDto request)
-        // {
-        //     var response = new ApiResponse();
-        //     try
-        //     {
-        //         var user = _context.ApplicationUsers?.FirstOrDefaultAsync(x => x.Id == request.Id);
-        //         if (user?.Result == null)
-        //         {
-        //             response.Success = false;
-        //             response.StatusCode = HttpStatusCode.NotFound;
-        //             response.Message = "Something went wrong while updating user info";
-        //             return response;
-        //         }
-        //         user.Result.Name = (request.Name == null || request.Name == "") ? user.Result.Name : request.Name;
-        //         user.Result.UserName = (request.UserName == null || request.UserName == "") ? user.Result.UserName : request.UserName;
-        //         user.Result.Email = (request.Email == null || request.Email == "") ? user.Result.Email : request.Email;
-        //         user.Result.PhoneNumber = (request.PhoneNumber == null || request.PhoneNumber == "") ? user.Result.PhoneNumber : request.PhoneNumber;
-        //         user.Result.Address = (request.Address == null || request.Address == "") ? user.Result.Address : request.Address;
-        //         user.Result.ProfilePicUrl = (request.ProfilePicUrl == null || request.ProfilePicUrl == "") ? user.Result.ProfilePicUrl : request.ProfilePicUrl;
-        //         user.Result.NidPicUrl = (request.NidPicUrl == null || request.NidPicUrl == "") ? user.Result.NidPicUrl : request.NidPicUrl;
-
-        //         await _userManager.UpdateAsync(user.Result);
-
-        //         response.Success = true;
-        //         response.StatusCode = HttpStatusCode.OK;
-        //         response.Message = "Update Successful";
-        //         return response;
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         response.Success = false;
-        //         response.StatusCode = HttpStatusCode.InternalServerError;
-        //         response.Message = ex.Message;
-        //         response.Error = ex;
-        //         return response;
-        //     }
-        // }
     }
 }
