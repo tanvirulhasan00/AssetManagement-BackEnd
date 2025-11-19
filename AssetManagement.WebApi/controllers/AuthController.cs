@@ -24,11 +24,9 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpPost]
         [Route("login")]
-        public ApiResponse Login(LoginRequestDto request)
+        public async Task<ApiResponse> Login(LoginRequestDto request)
         {
-            var response = new ApiResponse();
-            var user = _unitOfWork.Auth.Login(request);
-            response = user.Result;
+            var response = await _unitOfWork.Auth.Login(request);
             return response;
         }
 

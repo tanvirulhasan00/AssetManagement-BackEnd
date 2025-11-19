@@ -2,7 +2,11 @@ using System.Text;
 using AssetManagement.Database.data;
 using AssetManagement.Models.db;
 using AssetManagement.Repositories.IRepos;
+using AssetManagement.Repositories.IRepos.IDbChecker;
+using AssetManagement.Repositories.IRepos.IDbInitializer;
 using AssetManagement.Repositories.Repos;
+using AssetManagement.Repositories.Repos.DbChecker;
+using AssetManagement.Repositories.Repos.DbInitializer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHealthChecks();
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -99,16 +104,11 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-// builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
-//     .AddEntityFrameworkStores<AssetManagementDbContext>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IDbChecker, DbChecker>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
-// builder.Services.AddControllers()
-//     .AddJsonOptions(options =>
-//     {
-//         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-//     });
 
 // Add services to the container.
 builder.Services.AddCors(options =>
@@ -192,8 +192,41 @@ app.UseStaticFiles();
 //app.MapIdentityApi<ApplicationUser>();
 
 app.UseCors("AllowSpecificOrigins");
+app.MapHealthChecks("/health");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();
 app.MapControllers();
+
+var conStr = builder.Configuration.GetConnectionString("LocalDatabase") ?? "";
+if (!await ChecksDbConnection(app, conStr))
+{
+    // stop app completely
+    return;
+}
+await SeedDatabaseAsync(app);
+
 app.Run();
+
+
+static async Task<bool> ChecksDbConnection(WebApplication app, string connectionString)
+{
+    using var scope = app.Services.CreateScope();
+    var dbChecker = scope.ServiceProvider.GetRequiredService<IDbChecker>();
+    bool isConnected = await dbChecker.IsDbConnectedAsync(connectionString);
+    if (!isConnected)
+    {
+        Console.WriteLine("❌ Database connection failed. app is shutting down...");
+        return false;
+
+    }
+
+    Console.WriteLine("✅ Database is connected!");
+    return true;
+}
+static async Task SeedDatabaseAsync(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    await dbInitializer.InitializeAsync();
+}

@@ -1182,12 +1182,21 @@
         "dependencies": {
           "AssetManagement.Database": "1.0.0",
           "AssetManagement.Models": "1.0.0",
+          "AssetManagement.Utilities": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Versioning": "5.1.0",
           "Microsoft.EntityFrameworkCore": "8.0.11",
           "Microsoft.Extensions.Configuration": "9.0.0"
         },
         "runtime": {
           "AssetManagement.Repositories.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AssetManagement.Utilities/1.0.0": {
+        "runtime": {
+          "AssetManagement.Utilities.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1856,6 +1865,11 @@
       "sha512": ""
     },
     "AssetManagement.Repositories/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AssetManagement.Utilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

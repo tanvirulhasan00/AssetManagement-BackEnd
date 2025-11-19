@@ -16,3 +16,5 @@
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Repositories/obj/Debug/net8.0/AssetManagement.Repositories.pdb
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Repositories/obj/Debug/net8.0/ref/AssetManagement.Repositories.dll
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Repositories/obj/Debug/net8.0/AssetManagement.Repositories.sourcelink.json
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Repositories/bin/Debug/net8.0/AssetManagement.Utilities.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.Repositories/bin/Debug/net8.0/AssetManagement.Utilities.pdb

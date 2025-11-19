@@ -1,0 +1,75 @@
+## Ignore build results
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]og/
+[Ll]ogs/
+
+## VS/VSCode Generated
+.vs/
+.vscode/
+
+## User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+## Rider
+.idea/
+
+## NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+/packages/
+**/packages/*
+
+## Cache
+_ReSharper*/
+*.DotSettings.user
+*.DS_Store
+*.sln.iml
+
+## ASP.NET Generated
+wwwroot/lib/
+node_modules/
+dist/
+build/
+
+## Publish output
+publish/
+**/publish/
+
+## Generated secrets
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## Logs & dumps
+*.log
+*.tlog
+*.dmp
+
+## Temporary files
+*.tmp
+*.temp
+*.bak
+*.cache
+*.pid
+
+## OS specific
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~

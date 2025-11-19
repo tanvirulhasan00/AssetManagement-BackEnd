@@ -173,3 +173,5 @@
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/bin/Debug/net8.0/AssetManagement.Repositories.pdb
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/obj/Debug/net8.0/AssetManagement.WebApi.sourcelink.json
 /Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/bin/Debug/net8.0/AssetManagement.WebApi.staticwebassets.runtime.json
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/bin/Debug/net8.0/AssetManagement.Utilities.dll
+/Users/tanvir/Documents/Projects/DotNet/Dotnet-8/AssetManagement/AssetManagement.WebApi/bin/Debug/net8.0/AssetManagement.Utilities.pdb

@@ -53,10 +53,23 @@ namespace AssetManagement.Repositories.Repos.Auth
             var loginRes = new LoginResponseDto();
             try
             {
+                if (request == null)
+                {
+                    response.Success = false;
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.Message = "Username or password is incorrect";
+                    return response;
+                }
                 var user = _context.ApplicationUsers?.FirstOrDefault(u => u.UserName.ToLower() == request.UserName.ToLower());
-
+                if (user == null)
+                {
+                    response.Success = false;
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.Message = "Username or password is incorrect!";
+                    return response;
+                }
                 bool isValid = await _userManager.CheckPasswordAsync(user, request.Password);
-                if (user == null || isValid == false)
+                if (isValid == false)
                 {
                     response.Success = false;
                     response.StatusCode = HttpStatusCode.BadRequest;
@@ -68,6 +81,7 @@ namespace AssetManagement.Repositories.Repos.Auth
                 var roles = await _userManager.GetRolesAsync(user);
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_secretKey);
+                var tokenExpire = request.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddMinutes(30);
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
@@ -76,20 +90,15 @@ namespace AssetManagement.Repositories.Repos.Auth
                     new Claim(ClaimTypes.Name, user.UserName.ToString()),
                     new Claim(ClaimTypes.Role, roles.FirstOrDefault())
                   ]),
-                    Expires = DateTime.UtcNow.AddDays(7),
+                    Expires = tokenExpire,
                     SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
 
+                loginRes.UserId = user.Id;
+                loginRes.UserRole = roles.FirstOrDefault();
                 loginRes.Token = tokenHandler.WriteToken(token);
-                UserDto userRes = new()
-                {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    Name = user.Name,
-                    Active = user.Active,
-                };
-                loginRes.User = userRes;
+                loginRes.TokenExpire = tokenExpire;
                 // var jwt = tokenHandler.ReadJwtToken(loginRes.Token);
                 // loginRes.Role = jwt.Claims.FirstOrDefault(x => x.Type == "role")?.Value;
 

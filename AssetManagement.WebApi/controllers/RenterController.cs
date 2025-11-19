@@ -157,8 +157,8 @@ namespace AssetManagement.WebApi.controllers
                     PrevRoomOwnerNumber = request.PrevRoomOwnerNumber,
                     PrevRoomOwnerAddress = request.PrevRoomOwnerAddress,
                     ReasonToLeavePrevHome = request.ReasonToLeavePrevHome,
-                    ImageUrl = profilePicUrl,
-                    NidImageUrl = nidPicUrl,
+                    ImageUrl = request.ImageUrl != null ? profilePicUrl : null,
+                    NidImageUrl = request.NidImageUrl != null ? nidPicUrl : null,
                     Active = int.Parse(request.Active),
                     StartDate = request.StartDate,
                     CreatedDate = DateTime.UtcNow,
@@ -263,8 +263,8 @@ namespace AssetManagement.WebApi.controllers
                 renterData.PrevRoomOwnerNumber = (request.PrevRoomOwnerNumber == null || request.PrevRoomOwnerNumber == "") ? renterData.PrevRoomOwnerNumber : request.PrevRoomOwnerNumber;
                 renterData.PrevRoomOwnerAddress = (request.PrevRoomOwnerAddress == null || request.PrevRoomOwnerAddress == "") ? renterData.PrevRoomOwnerAddress : request.PrevRoomOwnerAddress;
                 renterData.ReasonToLeavePrevHome = (request.ReasonToLeavePrevHome == null || request.ReasonToLeavePrevHome == "") ? renterData.ReasonToLeavePrevHome : request.ReasonToLeavePrevHome;
-                renterData.ImageUrl = (profilePicUrl == null || profilePicUrl == "") ? renterData.ImageUrl : profilePicUrl;
-                renterData.NidImageUrl = (nidPicUrl == null || nidPicUrl == "") ? renterData.NidImageUrl : nidPicUrl;
+                renterData.ImageUrl = (request.ImageUrl == null) ? renterData.ImageUrl : profilePicUrl;
+                renterData.NidImageUrl = (request.NidImageUrl == null) ? renterData.NidImageUrl : nidPicUrl;
                 renterData.Active = int.Parse(request.Active);
                 renterData.UpdatedDate = DateTime.UtcNow;
 

@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AssetManagement.Models\AssetManagement.Models.csproj" />
     <ProjectReference Include="..\AssetManagement.Database\AssetManagement.Database.csproj" />
+    <ProjectReference Include="..\AssetManagement.Utilities\AssetManagement.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

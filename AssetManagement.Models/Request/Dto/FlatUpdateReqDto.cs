@@ -10,7 +10,7 @@ namespace AssetManagement.Models.Request.Dto
     {
         public long Id { get; set; }
         public string? Name { get; set; }
-        public string FloorNo { get; set; }
+        public string? FloorNo { get; set; }
         public string TotalRoom { get; set; }
         public string FlatAdvance { get; set; }
         public string CategoryId { get; set; }
