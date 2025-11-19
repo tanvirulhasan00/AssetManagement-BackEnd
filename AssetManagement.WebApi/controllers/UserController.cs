@@ -9,6 +9,7 @@ using AssetManagement.Models.Request.Generic;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Models.Response.Dto;
 using AssetManagement.Repositories.IRepos;
+using AssetManagement.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetAllUser(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -88,7 +89,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetUser(string Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -135,7 +136,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> UpdateUser(UserInfoUpdateReqDto userDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -234,7 +235,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> DeleteUser(List<string> userIds, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

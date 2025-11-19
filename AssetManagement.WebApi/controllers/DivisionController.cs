@@ -8,6 +8,7 @@ using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Request.Generic;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Repositories.IRepos;
+using AssetManagement.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,7 @@ namespace AssetManagement.WebApi.controllers
         }
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetAllDivision(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -72,7 +73,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetDivision(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -119,7 +120,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> CreateDivision([FromBody] DiviNDisCreateReqDto divisionDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -189,7 +190,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> UpdateDivision([FromBody] DiviNDisReqDto divisionDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -256,7 +257,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN}")]
         public async Task<ApiResponse> DeleteDivision(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

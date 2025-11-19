@@ -4,6 +4,7 @@ using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Request.Generic;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Repositories.IRepos;
+using AssetManagement.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetAllHouse(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -70,7 +71,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("get")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetHouse(int Id, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -118,7 +119,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> CreateHouse([FromBody] HouseCreateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -171,7 +172,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> UpdateHouse([FromBody] HouseUpdateReqDto request, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -236,7 +237,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> DeleteHouse(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
