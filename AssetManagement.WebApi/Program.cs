@@ -116,24 +116,18 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigins", policy =>
     {
         policy.WithOrigins(
-            "https://localhost:7195",
-            "https://localhost:5233",
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "http://tanvirul-001-site1.mtempurl.com/",
-            "http://localhost:39166/"
+                "https://localhost:7195",
+                "https://localhost:5233",
+                "http://localhost:5173",
+                "http://localhost:3001",
+                "http://tanvirul-001-site1.mtempurl.com/",
+                "http://localhost:39166/"
             ) // Add allowed origins
-              .AllowAnyHeader()  // Allow specific headers or use .WithHeaders()
-              .AllowAnyMethod() // Allow specific methods or use .WithMethods()
-              .AllowAnyOrigin();
+            .AllowAnyHeader() // Allow specific headers or use .WithHeaders()
+            .AllowAnyMethod() // Allow specific methods or use .WithMethods()
+            .AllowCredentials();
     });
 
-    options.AddPolicy("AllowSpecificOrigins", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
 });
 
 var key = builder.Configuration.GetValue<string>("TokenSetting:SecretKey") ?? "";
