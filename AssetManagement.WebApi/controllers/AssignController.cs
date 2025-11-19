@@ -4,6 +4,7 @@ using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Request.Generic;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Repositories.IRepos;
+using AssetManagement.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpGet]
         [Route("getall")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetAllAssign(CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -71,7 +72,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("get")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> GetAssign(GetAssignReqDto req, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -158,7 +159,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> CreateAssign([FromBody] AssignCreateReqDto assignDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -250,7 +251,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> UpdateAssign([FromBody] AssignUpdateReqDto assignDto, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -320,7 +321,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> DeleteAssign(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();
@@ -412,7 +413,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("make-inactive")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> MakeInActive(List<string> Ids, CancellationToken cancellationToken)
         {
             var response = new ApiResponse();

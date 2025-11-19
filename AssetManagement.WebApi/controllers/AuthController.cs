@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AssetManagement.Models.Request.Dto;
 using AssetManagement.Models.Response.Api;
 using AssetManagement.Repositories.IRepos;
+using AssetManagement.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,7 +33,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("registration")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> Registration(RegistrationReqDto request)
         {
             var response = new ApiResponse();
@@ -70,7 +71,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("reset-credentials")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> ResetPassword([FromBody] ResetPassReqDto request)
         {
             var response = new ApiResponse();
@@ -79,7 +80,7 @@ namespace AssetManagement.WebApi.controllers
 
         [HttpPost]
         [Route("update-credentials")]
-        [Authorize(Roles = "admin,manager")]
+        [Authorize(Roles = $"{RolesVariable.ADMIN},{RolesVariable.MANAGER}")]
         public async Task<ApiResponse> UpdatePassword([FromBody] UpdatePassReqDto request)
         {
             var response = new ApiResponse();
